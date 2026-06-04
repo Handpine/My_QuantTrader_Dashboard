@@ -1,15 +1,21 @@
 {
-    "last_updated": "2026-06-04 21:07:39 (台灣時間)",
+    "last_updated": "2026-06-05 00:16:35 (台灣時間)",
     "long_strategy": {
         "allocated_cash": 50000.0,
-        "is_holding": false,
-        "highest_price": 0.0,
+        "is_holding": true,
+        "highest_price": 756.3300170898438,
         "equity_history": [
             {
                 "date": "2026-06-04",
                 "equity": 50000.0,
                 "cash": 50000.0,
                 "position_value": 0.0
+            },
+            {
+                "date": "2026-06-05",
+                "equity": 50010.04,
+                "cash": 50000.0,
+                "position_value": 10.04
             }
         ],
         "trade_history": []
@@ -21,6 +27,12 @@
         "equity_history": [
             {
                 "date": "2026-06-04",
+                "equity": 50000.0,
+                "cash": 50000.0,
+                "position_value": 0.0
+            },
+            {
+                "date": "2026-06-05",
                 "equity": 50000.0,
                 "cash": 50000.0,
                 "position_value": 0.0
