@@ -1,0 +1,31 @@
+{
+    "last_updated": "2026-06-04 12:44:24",
+    "long_strategy": {
+        "allocated_cash": 50000.0,
+        "is_holding": false,
+        "highest_price": 0.0,
+        "equity_history": [
+            {
+                "date": "2026-06-04",
+                "equity": 50000.0,
+                "cash": 50000.0,
+                "position_value": 0.0
+            }
+        ],
+        "trade_history": []
+    },
+    "short_strategy": {
+        "allocated_cash": 50000.0,
+        "is_holding": false,
+        "highest_price": 0.0,
+        "equity_history": [
+            {
+                "date": "2026-06-04",
+                "equity": 50000.0,
+                "cash": 50000.0,
+                "position_value": 0.0
+            }
+        ],
+        "trade_history": []
+    }
+}

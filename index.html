@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量化交易實驗室儀表板</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(20, 30, 55, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-long: #10b981; /* 綠色 */
+            --accent-short: #ef4444; /* 紅色 */
+            --accent-glow-long: rgba(16, 185, 129, 0.15);
+            --accent-glow-short: rgba(239, 68, 68, 0.15);
+            --border-glow: rgba(59, 130, 246, 0.2);
+            --card-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 標題欄 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .update-time {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid var(--card-border);
+        }
+
+        /* 數據總覽卡片 */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .card-long::before { background: var(--accent-long); }
+        .card-short::before { background: var(--accent-short); }
+
+        .card-long:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--accent-glow-long);
+        }
+
+        .card-short:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--accent-glow-short);
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .card-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .text-green { color: var(--accent-long); }
+        .text-red { color: var(--accent-short); }
+
+        /* 圖表區 */
+        .chart-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--card-radius);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        /* 交易日誌區 */
+        .logs-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .log-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .table-container {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        .table-container th {
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .table-container td {
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .badge-buy { background: rgba(16, 185, 129, 0.15); color: var(--accent-long); }
+        .badge-sell { background: rgba(239, 68, 68, 0.15); color: var(--accent-short); }
+
+        /* PWA 安裝按鈕 */
+        .pwa-btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: none;
+            transition: transform 0.2s;
+        }
+
+        .pwa-btn:hover { transform: scale(1.05); }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            h1 { font-size: 1.5rem; }
+            .logs-section { grid-template-columns: 1fr; }
+            .chart-section { padding: 1rem; }
+            .chart-container { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 量化交易實驗室儀表板</h1>
+            <div>
+                <button id="pwa-install-btn" class="pwa-btn">安裝應用程式</button>
+                <span class="update-time" id="last-updated">更新中...</span>
+            </div>
+        </header>
+
+        <!-- 總覽卡片 -->
+        <div class="summary-grid">
+            <!-- 做多策略卡片 -->
+            <div class="card card-long">
+                <div class="card-title">🟢 均線 + 6% 移動止損策略 (多頭)</div>
+                <div class="card-value" id="long-equity">$50,000.00</div>
+                <div class="card-stat-row">
+                    <span>初始資金:</span>
+                    <span class="stat-value">$50,000.00</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>累積回報:</span>
+                    <span class="stat-value" id="long-return">+0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>可用現金:</span>
+                    <span class="stat-value" id="long-cash">$50,000.00</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>目前持倉:</span>
+                    <span class="stat-value" id="long-holding">空倉中</span>
+                </div>
+            </div>
+
+            <!-- 做空策略卡片 -->
+            <div class="card card-short">
+                <div class="card-title">🔴 保守型熊市做空策略 (空頭)</div>
+                <div class="card-value" id="short-equity">$50,000.00</div>
+                <div class="card-stat-row">
+                    <span>初始資金:</span>
+                    <span class="stat-value">$50,000.00</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>累積回報:</span>
+                    <span class="stat-value" id="short-return">+0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>可用現金:</span>
+                    <span class="stat-value" id="short-cash">$50,000.00</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>目前持倉:</span>
+                    <span class="stat-value" id="short-holding">空倉中</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 淨值圖表 -->
+        <div class="chart-section">
+            <div class="section-header">
+                <span>📈 策略淨值走勢對比 (模擬實時)</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="equityChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 交易日誌對比 -->
+        <div class="logs-section">
+            <div class="log-box">
+                <h3 style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+                    <span>🟢 多頭交易歷史</span>
+                </h3>
+                <table class="table-container">
+                    <thead>
+                        <tr>
+                            <th>時間</th>
+                            <th>動作</th>
+                            <th>理由</th>
+                            <th>價格</th>
+                            <th>金額</th>
+                        </tr>
+                    </thead>
+                    <tbody id="long-trades-body">
+                        <tr><td colspan="5" style="text-align:center; color:var(--text-secondary);">無交易歷史紀錄</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="log-box">
+                <h3 style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+                    <span>🔴 空頭交易歷史</span>
+                </h3>
+                <table class="table-container">
+                    <thead>
+                        <tr>
+                            <th>時間</th>
+                            <th>動作</th>
+                            <th>理由</th>
+                            <th>價格</th>
+                            <th>金額</th>
+                        </tr>
+                    </thead>
+                    <tbody id="short-trades-body">
+                        <tr><td colspan="5" style="text-align:center; color:var(--text-secondary);">無交易歷史紀錄</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 載入去敏感公開數據
+        async function fetchDashboardData() {
+            try {
+                const response = await fetch('./public_data.json');
+                const data = await response.json();
+                
+                // 1. 更新更新時間
+                document.getElementById('last-updated').innerText = `數據更新於: ${data.last_updated}`;
+                
+                // 2. 更新多頭策略數據
+                const long = data.long_strategy;
+                const longLatestEquity = long.equity_history.length > 0 ? long.equity_history[long.equity_history.length - 1].equity : 50000.0;
+                const longRet = ((longLatestEquity - 50000.0) / 50000.0) * 100;
+                
+                document.getElementById('long-equity').innerText = `$${longLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                document.getElementById('long-return').innerText = `${longRet >= 0 ? '+' : ''}${longRet.toFixed(2)}%`;
+                document.getElementById('long-return').className = `stat-value ${longRet >= 0 ? 'text-green' : 'text-red'}`;
+                document.getElementById('long-cash').innerText = `$${long.allocated_cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                document.getElementById('long-holding').innerText = long.is_holding ? "持有 SPY 中" : "空倉中";
+                document.getElementById('long-holding').className = `stat-value ${long.is_holding ? 'text-green' : 'text-red'}`;
+                
+                // 3. 更新空頭策略數據
+                const short = data.short_strategy;
+                const shortLatestEquity = short.equity_history.length > 0 ? short.equity_history[short.equity_history.length - 1].equity : 50000.0;
+                const shortRet = ((shortLatestEquity - 50000.0) / 50000.0) * 100;
+                
+                document.getElementById('short-equity').innerText = `$${shortLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                document.getElementById('short-return').innerText = `${shortRet >= 0 ? '+' : ''}${shortRet.toFixed(2)}%`;
+                document.getElementById('short-return').className = `stat-value ${shortRet >= 0 ? 'text-green' : 'text-red'}`;
+                document.getElementById('short-cash').innerText = `$${short.allocated_cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                document.getElementById('short-holding').innerText = short.is_holding ? "持有 SH 做空" : "空倉中";
+                document.getElementById('short-holding').className = `stat-value ${short.is_holding ? 'text-green' : 'text-red'}`;
+                
+                // 4. 更新歷史交易表格
+                updateTradesTable('long-trades-body', long.trade_history);
+                updateTradesTable('short-trades-body', short.trade_history);
+                
+                // 5. 渲染淨值折線圖
+                renderChart(long.equity_history, short.equity_history);
+                
+            } catch (err) {
+                console.error("載入數據失敗:", err);
+                document.getElementById('last-updated').innerText = "數據加載出錯，請確認 public_data.json 是否生成。";
+            }
+        }
+
+        function updateTradesTable(elementId, trades) {
+            const tbody = document.getElementById(elementId);
+            if (!trades || trades.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--text-secondary);">無交易歷史紀錄</td></tr>`;
+                return;
+            }
+            
+            tbody.innerHTML = trades.slice().reverse().map(t => {
+                const actionBadge = t.type === 'BUY' ? '<span class="badge badge-buy">買入</span>' : '<span class="badge badge-sell">賣出</span>';
+                return `
+                    <tr>
+                        <td>${t.date.split(' ')[0]}</td>
+                        <td>${actionBadge}</td>
+                        <td>${t.reason || 'N/A'}</td>
+                        <td>$${t.price.toFixed(2)}</td>
+                        <td>$${t.amount.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        let equityChartInstance = null;
+        function renderChart(longHistory, shortHistory) {
+            const ctx = document.getElementById('equityChart').getContext('2d');
+            
+            // 整理日期集合
+            const allDates = Array.from(new Set([
+                ...longHistory.map(h => h.date),
+                ...shortHistory.map(h => h.date)
+            ])).sort();
+            
+            if (allDates.length === 0) {
+                allDates.push(new Date().toISOString().split('T')[0]);
+            }
+            
+            const longDataMap = new Map(longHistory.map(h => [h.date, h.equity]));
+            const shortDataMap = new Map(shortHistory.map(h => [h.date, h.equity]));
+            
+            // 如果某天缺數據，則延用前一天的淨值，最起點延用 50000
+            let lastLong = 50000.0;
+            const longPoints = allDates.map(date => {
+                if (longDataMap.has(date)) {
+                    lastLong = longDataMap.get(date);
+                }
+                return lastLong;
+            });
+            
+            let lastShort = 50000.0;
+            const shortPoints = allDates.map(date => {
+                if (shortDataMap.has(date)) {
+                    lastShort = shortDataMap.get(date);
+                }
+                return lastShort;
+            });
+
+            if (equityChartInstance) {
+                equityChartInstance.destroy();
+            }
+
+            equityChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: allDates,
+                    datasets: [
+                        {
+                            label: '做多策略 (SMA + 6% 止損)',
+                            data: longPoints,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.05)',
+                            fill: true,
+                            tension: 0.2,
+                            borderWidth: 2
+                        },
+                        {
+                            label: '做空策略 (熊市反向 SH)',
+                            data: shortPoints,
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.05)',
+                            fill: true,
+                            tension: 0.2,
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#f3f4f6',
+                                font: { size: 12 }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.03)' },
+                            ticks: { color: '#9ca3af' }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.03)' },
+                            ticks: { color: '#9ca3af' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // PWA 安裝邏輯
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('pwa-install-btn').style.display = 'block';
+        });
+
+        document.getElementById('pwa-install-btn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    document.getElementById('pwa-install-btn').style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        // 初始化加載
+        fetchDashboardData();
+    </script>
+</body>
+</html>
