@@ -1,0 +1,16 @@
+{
+  "name": "量化交易實驗室儀表板",
+  "short_name": "量化實驗室",
+  "description": "實時監控雙向美股量化策略績效",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#0b0f19",
+  "icons": [
+    {
+      "src": "pwa_icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
