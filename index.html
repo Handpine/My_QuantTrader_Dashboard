@@ -382,6 +382,64 @@
             </div>
         </div>
 
+        <!-- 實時策略比較表格 -->
+        <div class="logs-section" style="margin-bottom: 2rem;">
+            <div class="log-box" style="width: 100%;">
+                <h3 style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+                    <span>⚡ 實時策略績效對比 (Real-time Performance Comparison)</span>
+                </h3>
+                <div class="card-stat-row" style="color:var(--text-secondary); margin-bottom: 1rem;">
+                    * 以下數據根據每日收盤結算實時更新，用於直觀比較雙向策略之優劣。
+                </div>
+                <table class="table-container">
+                    <thead>
+                        <tr>
+                            <th>比較指標 (Metrics)</th>
+                            <th style="color: var(--accent);">🟢 多標的波段策略 (多頭)</th>
+                            <th style="color: var(--danger);">🔴 雙重避險策略 (空頭)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>累積回報率 (Total Return)</b></td>
+                            <td id="comp-long-ret" style="font-weight: bold;">---</td>
+                            <td id="comp-short-ret" style="font-weight: bold;">---</td>
+                        </tr>
+                        <tr>
+                            <td><b>最大回撤 (MDD)</b></td>
+                            <td id="comp-long-mdd" class="text-red">---</td>
+                            <td id="comp-short-mdd" class="text-red">---</td>
+                        </tr>
+                        <tr>
+                            <td><b>歷史勝率 (Win Rate)</b></td>
+                            <td id="comp-long-win">---</td>
+                            <td id="comp-short-win">---</td>
+                        </tr>
+                        <tr>
+                            <td><b>盈虧比 (Profit Factor)</b></td>
+                            <td id="comp-long-pf">---</td>
+                            <td id="comp-short-pf">---</td>
+                        </tr>
+                        <tr>
+                            <td><b>夏普比率 (Sharpe Ratio)</b></td>
+                            <td id="comp-long-sharpe">---</td>
+                            <td id="comp-short-sharpe">---</td>
+                        </tr>
+                        <tr>
+                            <td><b>平均單筆獲利 (Avg Win)</b></td>
+                            <td id="comp-long-avgwin" class="text-green">---</td>
+                            <td id="comp-short-avgwin" class="text-green">---</td>
+                        </tr>
+                        <tr>
+                            <td><b>平均單筆虧損 (Avg Loss)</b></td>
+                            <td id="comp-long-avgloss" class="text-red">---</td>
+                            <td id="comp-short-avgloss" class="text-red">---</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <!-- 淨值圖表 -->
         <div class="chart-section">
             <div class="section-header">
@@ -491,7 +549,31 @@
                 document.getElementById('short-holding').className = `stat-value ${short.is_holding ? 'text-green' : 'text-red'}`;
                 document.getElementById('short-pool').innerText = `$${shortLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
                 
-                // 4. 更新歷史交易表格
+                // 4. 更新實時策略比較表格
+                document.getElementById('comp-long-ret').innerText = `${longRet >= 0 ? '+' : ''}${longRet.toFixed(2)}%`;
+                document.getElementById('comp-long-ret').className = longRet >= 0 ? 'text-green' : 'text-red';
+                document.getElementById('comp-short-ret').innerText = `${shortRet >= 0 ? '+' : ''}${shortRet.toFixed(2)}%`;
+                document.getElementById('comp-short-ret').className = shortRet >= 0 ? 'text-green' : 'text-red';
+                
+                document.getElementById('comp-long-mdd').innerText = `${long.mdd.toFixed(2)}%`;
+                document.getElementById('comp-short-mdd').innerText = `${short.mdd.toFixed(2)}%`;
+                
+                document.getElementById('comp-long-win').innerText = `${long.win_rate.toFixed(2)}%`;
+                document.getElementById('comp-short-win').innerText = `${short.win_rate.toFixed(2)}%`;
+                
+                document.getElementById('comp-long-pf').innerText = `${long.advanced_metrics.profit_factor.toFixed(2)}`;
+                document.getElementById('comp-short-pf').innerText = `${short.advanced_metrics.profit_factor.toFixed(2)}`;
+                
+                document.getElementById('comp-long-sharpe').innerText = `${long.advanced_metrics.sharpe_ratio.toFixed(2)}`;
+                document.getElementById('comp-short-sharpe').innerText = `${short.advanced_metrics.sharpe_ratio.toFixed(2)}`;
+                
+                document.getElementById('comp-long-avgwin').innerText = `$${long.advanced_metrics.avg_win.toFixed(2)}`;
+                document.getElementById('comp-short-avgwin').innerText = `$${short.advanced_metrics.avg_win.toFixed(2)}`;
+                
+                document.getElementById('comp-long-avgloss').innerText = `$${long.advanced_metrics.avg_loss.toFixed(2)}`;
+                document.getElementById('comp-short-avgloss').innerText = `$${short.advanced_metrics.avg_loss.toFixed(2)}`;
+
+                // 5. 更新歷史交易表格
                 updateTradesTable('long-trades-body', long.trade_history);
                 updateTradesTable('short-trades-body', short.trade_history);
                 
