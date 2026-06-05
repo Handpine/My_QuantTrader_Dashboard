@@ -241,6 +241,28 @@
 
         .pwa-btn:hover { transform: scale(1.05); }
 
+        /* 刷新按鈕 */
+        .refresh-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
         @media (max-width: 768px) {
             body { padding: 1rem; }
             h1 { font-size: 1.5rem; }
@@ -671,7 +693,8 @@
                             backgroundColor: 'rgba(239, 68, 68, 0.05)',
                             fill: true,
                             tension: 0.2,
-                            borderWidth: 2
+                            borderWidth: 2,
+                            borderDash: [5, 5]
                         }
                     ]
                 },
