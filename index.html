@@ -651,8 +651,8 @@
             const longDataMap = new Map(longHistory.map(h => [h.date, h.equity]));
             const shortDataMap = new Map(shortHistory.map(h => [h.date, h.equity]));
             
-            // 如果某天缺數據，則延用前一天的淨值，最起點延用 50000
-            let lastLong = 50000.0;
+            // 如果某天缺數據，則延用前一天的淨值，最起點延用歷史起點
+            let lastLong = longHistory.length > 0 ? longHistory[0].equity : 50000.0;
             const longPoints = allDates.map(date => {
                 if (longDataMap.has(date)) {
                     lastLong = longDataMap.get(date);
@@ -660,7 +660,7 @@
                 return lastLong;
             });
             
-            let lastShort = 50000.0;
+            let lastShort = shortHistory.length > 0 ? shortHistory[0].equity : 50000.0;
             const shortPoints = allDates.map(date => {
                 if (shortDataMap.has(date)) {
                     lastShort = shortDataMap.get(date);
