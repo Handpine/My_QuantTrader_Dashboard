@@ -1,8 +1,8 @@
 {
-    "last_updated": "2026-06-05 23:16:03 (台灣時間)",
-    "total_account_equity": 99999.94,
+    "last_updated": "2026-06-05 23:23:49 (台灣時間)",
+    "total_account_equity": 99999.93,
     "long_strategy": {
-        "allocated_cash": 50000.0,
+        "allocated_cash": 49999.96,
         "is_holding": false,
         "holdings_str": "空倉中",
         "highest_price": 0.0,
@@ -19,15 +19,15 @@
         "equity_history": [
             {
                 "date": "2026-06-05",
-                "equity": 50000.0,
-                "cash": 50000.0,
+                "equity": 49999.96,
+                "cash": 49999.96,
                 "position_value": 0
             }
         ],
         "trade_history": []
     },
     "short_strategy": {
-        "allocated_cash": 50000.0,
+        "allocated_cash": 49999.97,
         "is_holding": false,
         "holdings_str": "空倉中",
         "highest_price": 0.0,
@@ -44,14 +44,14 @@
         "equity_history": [
             {
                 "date": "2026-06-04",
-                "equity": 50000.0,
-                "cash": 50000.0,
+                "equity": 49999.97,
+                "cash": 49999.97,
                 "position_value": 0.0
             },
             {
                 "date": "2026-06-05",
-                "equity": 50000.0,
-                "cash": 50000.0,
+                "equity": 49999.97,
+                "cash": 49999.97,
                 "position_value": 0
             }
         ],
