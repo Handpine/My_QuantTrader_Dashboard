@@ -254,8 +254,9 @@
     <div class="container">
         <header>
             <h1>📊 量化交易實驗室儀表板</h1>
-            <div>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
                 <button id="pwa-install-btn" class="pwa-btn">安裝應用程式</button>
+                <button onclick="fetchDashboardData()" style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.1); color:var(--text-primary); padding:0.5rem 1rem; border-radius:8px; cursor:pointer; transition:background 0.2s;">🔄 刷新數據</button>
                 <span class="update-time" id="last-updated">更新中...</span>
             </div>
         </header>
@@ -264,7 +265,7 @@
         <div class="summary-grid">
             <!-- 做多策略卡片 -->
             <div class="card card-long">
-                <div class="card-title">🟢 均線 + 6% 移動止損策略 (多頭)</div>
+                <div class="card-title">🟢 多標的波段策略 (多頭 QQQ/SMH/DIA)</div>
                 <div class="card-value" id="long-equity">$50,000.00</div>
                 <div class="card-stat-row">
                     <span>初始資金:</span>
@@ -273,6 +274,34 @@
                 <div class="card-stat-row">
                     <span>累積回報:</span>
                     <span class="stat-value" id="long-return">+0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>最大回撤 (MDD):</span>
+                    <span class="stat-value text-red" id="long-mdd">0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>歷史勝率:</span>
+                    <span class="stat-value" id="long-win-rate">0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>夏普比率 (年化估算):</span>
+                    <span class="stat-value" id="long-sharpe">0.00</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>盈虧比 (Profit Factor):</span>
+                    <span class="stat-value" id="long-profit-factor">0.00</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>平均盈利 / 虧損:</span>
+                    <span class="stat-value"><span id="long-avg-win" class="text-green">$0.00</span> / <span id="long-avg-loss" class="text-red">$0.00</span></span>
+                </div>
+                <div class="card-stat-row">
+                    <span>當前回撤:</span>
+                    <span class="stat-value text-red" id="long-curr-dd">0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>已交易次數:</span>
+                    <span class="stat-value" id="long-trades">0 次</span>
                 </div>
                 <div class="card-stat-row">
                     <span>可用現金:</span>
@@ -286,7 +315,7 @@
 
             <!-- 做空策略卡片 -->
             <div class="card card-short">
-                <div class="card-title">🔴 保守型熊市做空策略 (空頭)</div>
+                <div class="card-title">🔴 雙重避險策略 (空頭 SH/PSQ)</div>
                 <div class="card-value" id="short-equity">$50,000.00</div>
                 <div class="card-stat-row">
                     <span>初始資金:</span>
@@ -295,6 +324,34 @@
                 <div class="card-stat-row">
                     <span>累積回報:</span>
                     <span class="stat-value" id="short-return">+0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>最大回撤 (MDD):</span>
+                    <span class="stat-value text-red" id="short-mdd">0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>歷史勝率:</span>
+                    <span class="stat-value" id="short-win-rate">0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>夏普比率 (年化估算):</span>
+                    <span class="stat-value" id="short-sharpe">0.00</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>盈虧比 (Profit Factor):</span>
+                    <span class="stat-value" id="short-profit-factor">0.00</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>平均盈利 / 虧損:</span>
+                    <span class="stat-value"><span id="short-avg-win" class="text-green">$0.00</span> / <span id="short-avg-loss" class="text-red">$0.00</span></span>
+                </div>
+                <div class="card-stat-row">
+                    <span>當前回撤:</span>
+                    <span class="stat-value text-red" id="short-curr-dd">0.00%</span>
+                </div>
+                <div class="card-stat-row">
+                    <span>已交易次數:</span>
+                    <span class="stat-value" id="short-trades">0 次</span>
                 </div>
                 <div class="card-stat-row">
                     <span>可用現金:</span>
@@ -365,7 +422,8 @@
         // 載入去敏感公開數據
         async function fetchDashboardData() {
             try {
-                const response = await fetch('./public_data.json');
+                // 加入時間戳參數避免 PWA 或瀏覽器快取舊資料
+                const response = await fetch('./public_data.json?t=' + new Date().getTime());
                 const data = await response.json();
                 
                 // 1. 更新更新時間
@@ -379,8 +437,16 @@
                 document.getElementById('long-equity').innerText = `$${longLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
                 document.getElementById('long-return').innerText = `${longRet >= 0 ? '+' : ''}${longRet.toFixed(2)}%`;
                 document.getElementById('long-return').className = `stat-value ${longRet >= 0 ? 'text-green' : 'text-red'}`;
+                document.getElementById('long-mdd').innerText = `${long.mdd.toFixed(2)}%`;
+                document.getElementById('long-win-rate').innerText = `${long.win_rate.toFixed(2)}%`;
+                document.getElementById('long-sharpe').innerText = `${long.advanced_metrics.sharpe_ratio.toFixed(2)}`;
+                document.getElementById('long-profit-factor').innerText = `${long.advanced_metrics.profit_factor.toFixed(2)}`;
+                document.getElementById('long-avg-win').innerText = `$${long.advanced_metrics.avg_win.toFixed(2)}`;
+                document.getElementById('long-avg-loss').innerText = `$${long.advanced_metrics.avg_loss.toFixed(2)}`;
+                document.getElementById('long-curr-dd').innerText = `${long.advanced_metrics.current_drawdown.toFixed(2)}%`;
+                document.getElementById('long-trades').innerText = `${long.total_trades} 次`;
                 document.getElementById('long-cash').innerText = `$${long.allocated_cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                document.getElementById('long-holding').innerText = long.is_holding ? "持有 SPY 中" : "空倉中";
+                document.getElementById('long-holding').innerText = long.holdings_str;
                 document.getElementById('long-holding').className = `stat-value ${long.is_holding ? 'text-green' : 'text-red'}`;
                 
                 // 3. 更新空頭策略數據
@@ -391,8 +457,16 @@
                 document.getElementById('short-equity').innerText = `$${shortLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
                 document.getElementById('short-return').innerText = `${shortRet >= 0 ? '+' : ''}${shortRet.toFixed(2)}%`;
                 document.getElementById('short-return').className = `stat-value ${shortRet >= 0 ? 'text-green' : 'text-red'}`;
+                document.getElementById('short-mdd').innerText = `${short.mdd.toFixed(2)}%`;
+                document.getElementById('short-win-rate').innerText = `${short.win_rate.toFixed(2)}%`;
+                document.getElementById('short-sharpe').innerText = `${short.advanced_metrics.sharpe_ratio.toFixed(2)}`;
+                document.getElementById('short-profit-factor').innerText = `${short.advanced_metrics.profit_factor.toFixed(2)}`;
+                document.getElementById('short-avg-win').innerText = `$${short.advanced_metrics.avg_win.toFixed(2)}`;
+                document.getElementById('short-avg-loss').innerText = `$${short.advanced_metrics.avg_loss.toFixed(2)}`;
+                document.getElementById('short-curr-dd').innerText = `${short.advanced_metrics.current_drawdown.toFixed(2)}%`;
+                document.getElementById('short-trades').innerText = `${short.total_trades} 次`;
                 document.getElementById('short-cash').innerText = `$${short.allocated_cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                document.getElementById('short-holding').innerText = short.is_holding ? "持有 SH 做空" : "空倉中";
+                document.getElementById('short-holding').innerText = short.holdings_str;
                 document.getElementById('short-holding').className = `stat-value ${short.is_holding ? 'text-green' : 'text-red'}`;
                 
                 // 4. 更新歷史交易表格
