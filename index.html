@@ -507,6 +507,11 @@
                 // 1. 更新更新時間
                 document.getElementById('last-updated').innerText = `數據更新於: ${data.last_updated}`;
                 
+                // 1.5. 更新真實總帳戶淨值
+                if (data.total_account_equity) {
+                    document.getElementById('total-equity').innerText = `$${data.total_account_equity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                }
+
                 // 2. 更新多頭策略數據
                 const long = data.long_strategy;
                 const longLatestEquity = long.equity_history.length > 0 ? long.equity_history[long.equity_history.length - 1].equity : 50000.0;
