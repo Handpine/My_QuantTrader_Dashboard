@@ -67,7 +67,7 @@
 ## 📂 專案結構
 ```text
 ├── .github/workflows/
-│   └── auto_trader.yml         # 整合型工作流：每晚 10:00 自動執行雙向策略並發布網頁
+│   └── auto_trader.yml         # 整合型工作流：每晚 10:17 自動執行雙向策略並發布網頁
 ├── my_quant_lab/               # 量化實驗室主資料夾
 │   ├── keys.py                 # 本地 API 金鑰 (已在 .gitignore 中忽略，防洩露)
 │   ├── config.py               # 交易參數設定 (如標的、API 網址)
