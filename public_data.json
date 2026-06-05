@@ -1,5 +1,6 @@
 {
-    "last_updated": "2026-06-05 17:12:48 (台灣時間)",
+    "last_updated": "2026-06-05 17:20:49 (台灣時間)",
+    "total_account_equity": 100000.02,
     "long_strategy": {
         "allocated_cash": 50000.0,
         "is_holding": false,
@@ -7,7 +8,7 @@
         "highest_price": 0.0,
         "mdd": 0.0,
         "win_rate": 0.0,
-        "total_trades": 2,
+        "total_trades": 0,
         "advanced_metrics": {
             "sharpe_ratio": 0.0,
             "profit_factor": 0.0,
@@ -23,28 +24,7 @@
                 "position_value": 0
             }
         ],
-        "trade_history": [
-            {
-                "date": "2026-06-04 16:43:22",
-                "symbol": "SPY",
-                "type": "BUY",
-                "reason": "歷史測試買入",
-                "price": 752.12,
-                "qty": 0.006634579,
-                "amount": 4.99,
-                "order_id": "7d9e39f6-fdf5-4f7a-b10d-6a0cdae169ac"
-            },
-            {
-                "date": "2026-06-04 18:56:33",
-                "symbol": "SPY",
-                "type": "BUY",
-                "reason": "歷史測試買入",
-                "price": 752.12,
-                "qty": 0.006634579,
-                "amount": 4.99,
-                "order_id": "1088ed00-83bd-48c2-b0ce-eb46e348f61a"
-            }
-        ]
+        "trade_history": []
     },
     "short_strategy": {
         "allocated_cash": 50000.0,

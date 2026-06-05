@@ -253,13 +253,31 @@
 <body>
     <div class="container">
         <header>
-            <h1>📊 量化交易實驗室儀表板</h1>
-            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
+            <div class="logo-container">
+                <div class="logo"></div>
+                <h1>📊 量化交易實驗室儀表板</h1>
+            </div>
+            <div class="last-updated" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
                 <button id="pwa-install-btn" class="pwa-btn">安裝應用程式</button>
-                <button onclick="fetchDashboardData()" style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.1); color:var(--text-primary); padding:0.5rem 1rem; border-radius:8px; cursor:pointer; transition:background 0.2s;">🔄 刷新數據</button>
+                <button class="refresh-btn" onclick="location.reload();">🔄 刷新數據</button>
                 <span class="update-time" id="last-updated">更新中...</span>
             </div>
         </header>
+
+        <!-- 總帳戶淨值卡片 -->
+        <div class="total-portfolio-card" style="background: var(--bg-card); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border-left: 4px solid var(--accent); box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">總帳戶實體淨值 (與 Alpaca 同步)</div>
+                <div id="total-equity" style="font-size: 2.5rem; font-weight: 700; color: var(--text-primary); font-family: 'Outfit', sans-serif;">$---</div>
+            </div>
+            <div style="text-align: right;">
+                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">虛擬子帳戶狀態</div>
+                <div style="display: flex; gap: 1rem;">
+                    <div><span class="badge badge-buy">多頭</span> <span id="long-pool">$---</span></div>
+                    <div><span class="badge badge-sell">空頭</span> <span id="short-pool">$---</span></div>
+                </div>
+            </div>
+        </div>
 
         <!-- 總覽卡片 -->
         <div class="summary-grid">
@@ -374,87 +392,7 @@
             </div>
         </div>
 
-        <!-- 歷史回測比較 -->
-        <div class="logs-section" style="margin-bottom: 2rem;">
-            <div class="log-box" style="width: 100%;">
-                <h3 style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
-                    <span>⏳ 歷史回測比較 (策略防禦力與攻擊力驗證)</span>
-                </h3>
-                <div class="card-stat-row" style="color:var(--text-secondary); margin-bottom: 1rem;">
-                    * 以下數據為基於歷史 K 線之真實回測 (包含 2022 年股災)。
-                </div>
-                <table class="table-container">
-                    <thead>
-                        <tr>
-                            <th>策略與標的</th>
-                            <th>期間</th>
-                            <th>總報酬率</th>
-                            <th>最大回撤 (MDD)</th>
-                            <th>勝率</th>
-                            <th>盈虧比 (PF)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="badge badge-buy">多頭</span> QQQ (科技股)</td>
-                            <td>3 年</td>
-                            <td class="text-green">+53.42%</td>
-                            <td class="text-red">-5.64%</td>
-                            <td>80.00%</td>
-                            <td>24.21</td>
-                        </tr>
-                        <tr>
-                            <td><span class="badge badge-buy">多頭</span> QQQ (科技股)</td>
-                            <td>5 年</td>
-                            <td class="text-green">+62.05%</td>
-                            <td class="text-red">-5.64%</td>
-                            <td>87.50%</td>
-                            <td>27.90</td>
-                        </tr>
-                        <tr>
-                            <td><span class="badge badge-buy">多頭</span> QQQ (科技股)</td>
-                            <td>10 年</td>
-                            <td class="text-green">+60.88%</td>
-                            <td class="text-red">-12.06%</td>
-                            <td>61.11%</td>
-                            <td>3.67</td>
-                        </tr>
-                        <tr>
-                            <td colspan="6" style="background: rgba(255,255,255,0.02);"></td>
-                        </tr>
-                        <tr>
-                            <td><span class="badge badge-sell">空頭</span> SH (反向標普)</td>
-                            <td>3 年</td>
-                            <td>0.00%</td>
-                            <td>0.00%</td>
-                            <td>0.00%</td>
-                            <td>N/A</td>
-                        </tr>
-                        <tr>
-                            <td><span class="badge badge-sell">空頭</span> SH (反向標普)</td>
-                            <td>5 年</td>
-                            <td class="text-red">-1.15%</td>
-                            <td class="text-red">-5.95%</td>
-                            <td>25.00%</td>
-                            <td>0.67</td>
-                        </tr>
-                        <tr>
-                            <td><span class="badge badge-sell">空頭</span> SH (反向標普)</td>
-                            <td>10 年</td>
-                            <td class="text-red">-3.56%</td>
-                            <td class="text-red">-5.95%</td>
-                            <td>16.67%</td>
-                            <td>0.39</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
-                    💡 <b>深度解析</b>：<br>
-                    1. <b>多頭策略</b>：QQQ 在 200 日年線濾網與 ATR 動態止損的保護下，完美避開了 2022 年大熊市 (-35% 的跌幅)，將 5 年期 MDD 壓制在極低的 5.64%，勝率高達 87.5%。<br>
-                    2. <b>空頭策略</b>：做空反向 ETF (SH) 的意義在於「災難保險」。過去 10 年大多頭中，年線濾網成功阻擋了無謂的做空，10 年僅耗損 3.56%，成功扮演了無副作用的極端避險工具。
-                </div>
-            </div>
-        </div>
+
 
         <!-- 交易日誌對比 -->
         <div class="logs-section">
@@ -530,6 +468,7 @@
                 document.getElementById('long-cash').innerText = `$${long.allocated_cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
                 document.getElementById('long-holding').innerText = long.holdings_str;
                 document.getElementById('long-holding').className = `stat-value ${long.is_holding ? 'text-green' : 'text-red'}`;
+                document.getElementById('long-pool').innerText = `$${longLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
                 
                 // 3. 更新空頭策略數據
                 const short = data.short_strategy;
@@ -550,6 +489,7 @@
                 document.getElementById('short-cash').innerText = `$${short.allocated_cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
                 document.getElementById('short-holding').innerText = short.holdings_str;
                 document.getElementById('short-holding').className = `stat-value ${short.is_holding ? 'text-green' : 'text-red'}`;
+                document.getElementById('short-pool').innerText = `$${shortLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
                 
                 // 4. 更新歷史交易表格
                 updateTradesTable('long-trades-body', long.trade_history);
@@ -629,7 +569,7 @@
                     labels: allDates,
                     datasets: [
                         {
-                            label: '做多策略 (SMA + 6% 止損)',
+                            label: '多標的波段策略 (多頭 QQQ/SMH/DIA)',
                             data: longPoints,
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.05)',
@@ -638,7 +578,7 @@
                             borderWidth: 2
                         },
                         {
-                            label: '做空策略 (熊市反向 SH)',
+                            label: '雙重避險策略 (空頭 SH/PSQ)',
                             data: shortPoints,
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.05)',
