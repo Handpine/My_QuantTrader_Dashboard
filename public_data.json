@@ -1,21 +1,26 @@
 {
-    "last_updated": "2026-06-05 15:40:51 (台灣時間)",
+    "last_updated": "2026-06-05 16:09:09 (台灣時間)",
     "long_strategy": {
         "allocated_cash": 50000.0,
-        "is_holding": true,
-        "highest_price": 757.0900268554688,
+        "is_holding": false,
+        "holdings_str": "空倉中",
+        "highest_price": 0.0,
+        "mdd": 0.0,
+        "win_rate": 0.0,
+        "total_trades": 0,
+        "advanced_metrics": {
+            "sharpe_ratio": 0.0,
+            "profit_factor": 0.0,
+            "avg_win": 0.0,
+            "avg_loss": 0.0,
+            "current_drawdown": 0.0
+        },
         "equity_history": [
             {
-                "date": "2026-06-04",
+                "date": "2026-06-05",
                 "equity": 50000.0,
                 "cash": 50000.0,
-                "position_value": 0.0
-            },
-            {
-                "date": "2026-06-05",
-                "equity": 50009.99,
-                "cash": 50000.0,
-                "position_value": 9.99
+                "position_value": 0
             }
         ],
         "trade_history": []
@@ -23,7 +28,18 @@
     "short_strategy": {
         "allocated_cash": 50000.0,
         "is_holding": false,
+        "holdings_str": "空倉中",
         "highest_price": 0.0,
+        "mdd": 0.0,
+        "win_rate": 0.0,
+        "total_trades": 0,
+        "advanced_metrics": {
+            "sharpe_ratio": 0.0,
+            "profit_factor": 0.0,
+            "avg_win": 0.0,
+            "avg_loss": 0.0,
+            "current_drawdown": 0.0
+        },
         "equity_history": [
             {
                 "date": "2026-06-04",
@@ -35,7 +51,7 @@
                 "date": "2026-06-05",
                 "equity": 50000.0,
                 "cash": 50000.0,
-                "position_value": 0.0
+                "position_value": 0
             }
         ],
         "trade_history": []
