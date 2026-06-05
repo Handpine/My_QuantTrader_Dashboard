@@ -384,6 +384,7 @@
                     <thead>
                         <tr>
                             <th>時間</th>
+                            <th>標的</th>
                             <th>動作</th>
                             <th>理由</th>
                             <th>價格</th>
@@ -404,6 +405,7 @@
                     <thead>
                         <tr>
                             <th>時間</th>
+                            <th>標的</th>
                             <th>動作</th>
                             <th>理由</th>
                             <th>價格</th>
@@ -494,6 +496,7 @@
                 return `
                     <tr>
                         <td>${t.date.split(' ')[0]}</td>
+                        <td>${t.symbol || 'N/A'}</td>
                         <td>${actionBadge}</td>
                         <td>${t.reason || 'N/A'}</td>
                         <td>$${t.price.toFixed(2)}</td>
@@ -547,7 +550,7 @@
                     labels: allDates,
                     datasets: [
                         {
-                            label: '做多策略 (SMA + 6% 止損)',
+                            label: '做多策略 (多頭 QQQ/SMH/DIA)',
                             data: longPoints,
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.05)',
@@ -556,7 +559,7 @@
                             borderWidth: 2
                         },
                         {
-                            label: '做空策略 (熊市反向 SH)',
+                            label: '做空策略 (雙重避險 SH/PSQ)',
                             data: shortPoints,
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.05)',
