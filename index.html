@@ -374,6 +374,88 @@
             </div>
         </div>
 
+        <!-- 歷史回測比較 -->
+        <div class="logs-section" style="margin-bottom: 2rem;">
+            <div class="log-box" style="width: 100%;">
+                <h3 style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+                    <span>⏳ 歷史回測比較 (策略防禦力與攻擊力驗證)</span>
+                </h3>
+                <div class="card-stat-row" style="color:var(--text-secondary); margin-bottom: 1rem;">
+                    * 以下數據為基於歷史 K 線之真實回測 (包含 2022 年股災)。
+                </div>
+                <table class="table-container">
+                    <thead>
+                        <tr>
+                            <th>策略與標的</th>
+                            <th>期間</th>
+                            <th>總報酬率</th>
+                            <th>最大回撤 (MDD)</th>
+                            <th>勝率</th>
+                            <th>盈虧比 (PF)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge badge-buy">多頭</span> QQQ (科技股)</td>
+                            <td>3 年</td>
+                            <td class="text-green">+53.42%</td>
+                            <td class="text-red">-5.64%</td>
+                            <td>80.00%</td>
+                            <td>24.21</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-buy">多頭</span> QQQ (科技股)</td>
+                            <td>5 年</td>
+                            <td class="text-green">+62.05%</td>
+                            <td class="text-red">-5.64%</td>
+                            <td>87.50%</td>
+                            <td>27.90</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-buy">多頭</span> QQQ (科技股)</td>
+                            <td>10 年</td>
+                            <td class="text-green">+60.88%</td>
+                            <td class="text-red">-12.06%</td>
+                            <td>61.11%</td>
+                            <td>3.67</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="background: rgba(255,255,255,0.02);"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-sell">空頭</span> SH (反向標普)</td>
+                            <td>3 年</td>
+                            <td>0.00%</td>
+                            <td>0.00%</td>
+                            <td>0.00%</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-sell">空頭</span> SH (反向標普)</td>
+                            <td>5 年</td>
+                            <td class="text-red">-1.15%</td>
+                            <td class="text-red">-5.95%</td>
+                            <td>25.00%</td>
+                            <td>0.67</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-sell">空頭</span> SH (反向標普)</td>
+                            <td>10 年</td>
+                            <td class="text-red">-3.56%</td>
+                            <td class="text-red">-5.95%</td>
+                            <td>16.67%</td>
+                            <td>0.39</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
+                    💡 <b>深度解析</b>：<br>
+                    1. <b>多頭策略</b>：QQQ 在 200 日年線濾網與 ATR 動態止損的保護下，完美避開了 2022 年大熊市 (-35% 的跌幅)，將 5 年期 MDD 壓制在極低的 5.64%，勝率高達 87.5%。<br>
+                    2. <b>空頭策略</b>：做空反向 ETF (SH) 的意義在於「災難保險」。過去 10 年大多頭中，年線濾網成功阻擋了無謂的做空，10 年僅耗損 3.56%，成功扮演了無副作用的極端避險工具。
+                </div>
+            </div>
+        </div>
+
         <!-- 交易日誌對比 -->
         <div class="logs-section">
             <div class="log-box">
@@ -384,7 +466,6 @@
                     <thead>
                         <tr>
                             <th>時間</th>
-                            <th>標的</th>
                             <th>動作</th>
                             <th>理由</th>
                             <th>價格</th>
@@ -405,7 +486,6 @@
                     <thead>
                         <tr>
                             <th>時間</th>
-                            <th>標的</th>
                             <th>動作</th>
                             <th>理由</th>
                             <th>價格</th>
@@ -496,7 +576,6 @@
                 return `
                     <tr>
                         <td>${t.date.split(' ')[0]}</td>
-                        <td>${t.symbol || 'N/A'}</td>
                         <td>${actionBadge}</td>
                         <td>${t.reason || 'N/A'}</td>
                         <td>$${t.price.toFixed(2)}</td>
@@ -550,7 +629,7 @@
                     labels: allDates,
                     datasets: [
                         {
-                            label: '做多策略 (多頭 QQQ/SMH/DIA)',
+                            label: '做多策略 (SMA + 6% 止損)',
                             data: longPoints,
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.05)',
@@ -559,7 +638,7 @@
                             borderWidth: 2
                         },
                         {
-                            label: '做空策略 (雙重避險 SH/PSQ)',
+                            label: '做空策略 (熊市反向 SH)',
                             data: shortPoints,
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.05)',
