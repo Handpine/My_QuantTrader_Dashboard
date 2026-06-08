@@ -1,6 +1,6 @@
 {
-    "last_updated": "2026-06-06 00:41:33 (台灣時間)",
-    "total_account_equity": 99999.93,
+    "last_updated": "2026-06-09 01:29:36 (台灣時間)",
+    "total_account_equity": 99999.91,
     "long_strategy": {
         "allocated_cash": 49999.96,
         "is_holding": false,
@@ -31,6 +31,12 @@
             },
             {
                 "date": "2026-06-06",
+                "equity": 49999.96,
+                "cash": 49999.96,
+                "position_value": 0
+            },
+            {
+                "date": "2026-06-09",
                 "equity": 49999.96,
                 "cash": 49999.96,
                 "position_value": 0
@@ -68,6 +74,12 @@
             },
             {
                 "date": "2026-06-06",
+                "equity": 49999.97,
+                "cash": 49999.97,
+                "position_value": 0
+            },
+            {
+                "date": "2026-06-09",
                 "equity": 49999.97,
                 "cash": 49999.97,
                 "position_value": 0
