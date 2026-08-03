@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03 17:54:21",
+  "updated_at": "2026-08-03 17:58:26",
   "market": "🇹🇼 純台股實戰量化交易系統 (100萬虛擬帳戶檔)",
   "status": "OPERATIONAL_VERIFIED",
   "virtual_account_1m": {
@@ -77,423 +77,423 @@
   "equity_history": [
     {
       "date": "2026-05-08",
-      "equity": 1214811.65,
-      "stock_val": 798297.38,
+      "equity": 1214811.56,
+      "stock_val": 798297.32,
       "short_cash": 306745.69,
-      "withdraw_cash": 109768.58
+      "withdraw_cash": 109768.55
     },
     {
       "date": "2026-05-11",
-      "equity": 1217047.55,
-      "stock_val": 800504.61,
+      "equity": 1217047.46,
+      "stock_val": 800504.55,
       "short_cash": 306766.81,
-      "withdraw_cash": 109776.14
+      "withdraw_cash": 109776.11
     },
     {
       "date": "2026-05-12",
-      "equity": 1215450.2,
-      "stock_val": 798878.58,
+      "equity": 1215450.11,
+      "stock_val": 798878.52,
       "short_cash": 306787.92,
-      "withdraw_cash": 109783.7
+      "withdraw_cash": 109783.67
     },
     {
       "date": "2026-05-13",
-      "equity": 1210573.78,
-      "stock_val": 793973.48,
+      "equity": 1210573.69,
+      "stock_val": 793973.42,
       "short_cash": 306809.05,
-      "withdraw_cash": 109791.25
+      "withdraw_cash": 109791.22
     },
     {
       "date": "2026-05-14",
-      "equity": 1217862.57,
-      "stock_val": 801233.59,
+      "equity": 1217862.48,
+      "stock_val": 801233.53,
       "short_cash": 306830.17,
-      "withdraw_cash": 109798.81
+      "withdraw_cash": 109798.78
     },
     {
       "date": "2026-05-15",
-      "equity": 1213359.18,
-      "stock_val": 796701.51,
+      "equity": 1213359.09,
+      "stock_val": 796701.45,
       "short_cash": 306851.29,
-      "withdraw_cash": 109806.37
+      "withdraw_cash": 109806.34
     },
     {
       "date": "2026-05-18",
-      "equity": 1208166.76,
-      "stock_val": 791480.41,
+      "equity": 1208166.67,
+      "stock_val": 791480.35,
       "short_cash": 306872.42,
-      "withdraw_cash": 109813.93
+      "withdraw_cash": 109813.9
     },
     {
       "date": "2026-05-19",
-      "equity": 1203173.14,
-      "stock_val": 786458.1,
+      "equity": 1203173.05,
+      "stock_val": 786458.04,
       "short_cash": 306893.55,
-      "withdraw_cash": 109821.49
+      "withdraw_cash": 109821.46
     },
     {
       "date": "2026-05-20",
-      "equity": 1198654.11,
-      "stock_val": 781910.38,
+      "equity": 1198654.02,
+      "stock_val": 781910.32,
       "short_cash": 306914.67,
-      "withdraw_cash": 109829.05
+      "withdraw_cash": 109829.02
     },
     {
       "date": "2026-05-21",
-      "equity": 1217061.52,
-      "stock_val": 800289.11,
+      "equity": 1217061.43,
+      "stock_val": 800289.04,
       "short_cash": 306935.8,
-      "withdraw_cash": 109836.61
+      "withdraw_cash": 109836.58
     },
     {
       "date": "2026-05-22",
-      "equity": 1226182.72,
-      "stock_val": 809381.61,
+      "equity": 1226182.63,
+      "stock_val": 809381.55,
       "short_cash": 306956.94,
-      "withdraw_cash": 109844.18
+      "withdraw_cash": 109844.15
     },
     {
       "date": "2026-05-25",
-      "equity": 1247540.4,
-      "stock_val": 830710.59,
+      "equity": 1247540.3,
+      "stock_val": 830710.52,
       "short_cash": 306978.07,
-      "withdraw_cash": 109851.74
+      "withdraw_cash": 109851.71
     },
     {
       "date": "2026-05-26",
-      "equity": 1245175.56,
-      "stock_val": 828317.06,
+      "equity": 1245175.46,
+      "stock_val": 828316.99,
       "short_cash": 306999.2,
-      "withdraw_cash": 109859.3
+      "withdraw_cash": 109859.27
     },
     {
       "date": "2026-05-27",
-      "equity": 1258977.41,
-      "stock_val": 842090.21,
+      "equity": 1258977.31,
+      "stock_val": 842090.14,
       "short_cash": 307020.34,
-      "withdraw_cash": 109866.87
+      "withdraw_cash": 109866.83
     },
     {
       "date": "2026-05-28",
-      "equity": 1249128.45,
-      "stock_val": 832212.54,
+      "equity": 1249128.35,
+      "stock_val": 832212.48,
       "short_cash": 307041.48,
-      "withdraw_cash": 109874.43
+      "withdraw_cash": 109874.4
     },
     {
       "date": "2026-05-29",
-      "equity": 1269589.99,
-      "stock_val": 852645.39,
+      "equity": 1269589.9,
+      "stock_val": 852645.32,
       "short_cash": 307062.61,
-      "withdraw_cash": 109881.99
+      "withdraw_cash": 109881.96
     },
     {
       "date": "2026-06-01",
-      "equity": 1287527.62,
-      "stock_val": 870554.31,
+      "equity": 1287527.52,
+      "stock_val": 870554.24,
       "short_cash": 307083.75,
-      "withdraw_cash": 109889.56
+      "withdraw_cash": 109889.53
     },
     {
       "date": "2026-06-02",
-      "equity": 1297683.17,
-      "stock_val": 880681.15,
+      "equity": 1297683.07,
+      "stock_val": 880681.08,
       "short_cash": 307104.9,
-      "withdraw_cash": 109897.12
+      "withdraw_cash": 109897.09
     },
     {
       "date": "2026-06-03",
-      "equity": 1314678.32,
-      "stock_val": 897647.59,
+      "equity": 1314678.22,
+      "stock_val": 897647.52,
       "short_cash": 307126.04,
-      "withdraw_cash": 109904.69
+      "withdraw_cash": 109904.66
     },
     {
       "date": "2026-06-04",
-      "equity": 1306744.19,
-      "stock_val": 889684.75,
+      "equity": 1306744.09,
+      "stock_val": 889684.68,
       "short_cash": 307147.18,
-      "withdraw_cash": 109912.26
+      "withdraw_cash": 109912.23
     },
     {
       "date": "2026-06-05",
-      "equity": 1295804.08,
-      "stock_val": 878715.92,
+      "equity": 1295803.97,
+      "stock_val": 878715.85,
       "short_cash": 307168.33,
-      "withdraw_cash": 109919.82
+      "withdraw_cash": 109919.79
     },
     {
       "date": "2026-06-08",
-      "equity": 1247504.93,
+      "equity": 1247504.83,
       "stock_val": 731800.54,
       "short_cash": 307189.48,
-      "withdraw_cash": 208514.91
+      "withdraw_cash": 208514.81
     },
     {
       "date": "2026-06-09",
-      "equity": 1247627.79,
+      "equity": 1247627.69,
       "stock_val": 731887.9,
       "short_cash": 307210.62,
-      "withdraw_cash": 208529.26
+      "withdraw_cash": 208529.17
     },
     {
       "date": "2026-06-10",
-      "equity": 1233103.5,
+      "equity": 1233103.41,
       "stock_val": 717328.11,
       "short_cash": 307231.78,
-      "withdraw_cash": 208543.62
+      "withdraw_cash": 208543.52
     },
     {
       "date": "2026-06-11",
-      "equity": 1233460.91,
+      "equity": 1233460.82,
       "stock_val": 717650.01,
       "short_cash": 307252.93,
-      "withdraw_cash": 208557.98
+      "withdraw_cash": 208557.88
     },
     {
       "date": "2026-06-12",
-      "equity": 1245708.7,
+      "equity": 1245708.6,
       "stock_val": 729862.28,
       "short_cash": 307274.08,
-      "withdraw_cash": 208572.33
+      "withdraw_cash": 208572.24
     },
     {
       "date": "2026-06-15",
-      "equity": 1261584.5,
+      "equity": 1261584.4,
       "stock_val": 745702.57,
       "short_cash": 307295.23,
-      "withdraw_cash": 208586.69
+      "withdraw_cash": 208586.6
     },
     {
       "date": "2026-06-16",
-      "equity": 1266472.9,
+      "equity": 1266472.8,
       "stock_val": 750555.45,
       "short_cash": 307316.39,
-      "withdraw_cash": 208601.05
+      "withdraw_cash": 208600.96
     },
     {
       "date": "2026-06-17",
-      "equity": 1269487.77,
+      "equity": 1269487.67,
       "stock_val": 753534.8,
       "short_cash": 307337.55,
-      "withdraw_cash": 208615.42
+      "withdraw_cash": 208615.32
     },
     {
       "date": "2026-06-18",
-      "equity": 1277900.05,
+      "equity": 1277899.95,
       "stock_val": 761911.56,
       "short_cash": 307358.71,
-      "withdraw_cash": 208629.78
+      "withdraw_cash": 208629.68
     },
     {
       "date": "2026-06-22",
-      "equity": 1292860.49,
+      "equity": 1292860.39,
       "stock_val": 776836.48,
       "short_cash": 307379.87,
-      "withdraw_cash": 208644.14
+      "withdraw_cash": 208644.04
     },
     {
       "date": "2026-06-23",
-      "equity": 1287216.65,
+      "equity": 1287216.55,
       "stock_val": 771157.11,
       "short_cash": 307401.03,
-      "withdraw_cash": 208658.51
+      "withdraw_cash": 208658.41
     },
     {
       "date": "2026-06-24",
-      "equity": 1275081.39,
+      "equity": 1275081.29,
       "stock_val": 758986.33,
       "short_cash": 307422.19,
-      "withdraw_cash": 208672.87
+      "withdraw_cash": 208672.77
     },
     {
       "date": "2026-06-25",
-      "equity": 1277177.13,
+      "equity": 1277177.03,
       "stock_val": 761046.53,
       "short_cash": 307443.36,
-      "withdraw_cash": 208687.24
+      "withdraw_cash": 208687.14
     },
     {
       "date": "2026-06-26",
-      "equity": 1256716.74,
+      "equity": 1256716.64,
       "stock_val": 740550.61,
       "short_cash": 307464.52,
-      "withdraw_cash": 208701.6
+      "withdraw_cash": 208701.51
     },
     {
       "date": "2026-06-29",
-      "equity": 1262834.37,
+      "equity": 1262834.27,
       "stock_val": 744748.4,
       "short_cash": 307485.69,
-      "withdraw_cash": 210600.28
+      "withdraw_cash": 210600.19
     },
     {
       "date": "2026-06-30",
-      "equity": 1271385.33,
+      "equity": 1271385.23,
       "stock_val": 753263.69,
       "short_cash": 307506.86,
-      "withdraw_cash": 210614.78
+      "withdraw_cash": 210614.68
     },
     {
       "date": "2026-07-01",
-      "equity": 1277423.01,
+      "equity": 1277422.91,
       "stock_val": 759265.69,
       "short_cash": 307528.03,
-      "withdraw_cash": 210629.28
+      "withdraw_cash": 210629.18
     },
     {
       "date": "2026-07-02",
-      "equity": 1273560.69,
+      "equity": 1273560.59,
       "stock_val": 755367.7,
       "short_cash": 307549.2,
-      "withdraw_cash": 210643.78
+      "withdraw_cash": 210643.69
     },
     {
       "date": "2026-07-03",
-      "equity": 1274790.88,
+      "equity": 1274790.78,
       "stock_val": 756562.22,
       "short_cash": 307570.38,
-      "withdraw_cash": 210658.28
+      "withdraw_cash": 210658.19
     },
     {
       "date": "2026-07-06",
-      "equity": 1278649.12,
+      "equity": 1278649.02,
       "stock_val": 760384.78,
       "short_cash": 307591.55,
-      "withdraw_cash": 210672.79
+      "withdraw_cash": 210672.69
     },
     {
       "date": "2026-07-07",
-      "equity": 1269562.51,
+      "equity": 1269562.41,
       "stock_val": 751262.49,
       "short_cash": 307612.73,
-      "withdraw_cash": 210687.29
+      "withdraw_cash": 210687.19
     },
     {
       "date": "2026-07-08",
-      "equity": 1271828.27,
+      "equity": 1271828.17,
       "stock_val": 753492.57,
       "short_cash": 307633.91,
-      "withdraw_cash": 210701.8
+      "withdraw_cash": 210701.7
     },
     {
       "date": "2026-07-09",
-      "equity": 1268494.94,
+      "equity": 1268494.84,
       "stock_val": 750123.55,
       "short_cash": 307655.09,
-      "withdraw_cash": 210716.3
+      "withdraw_cash": 210716.21
     },
     {
       "date": "2026-07-10",
-      "equity": 1268530.62,
+      "equity": 1268530.53,
       "stock_val": 750123.55,
       "short_cash": 307676.27,
-      "withdraw_cash": 210730.81
+      "withdraw_cash": 210730.71
     },
     {
       "date": "2026-07-13",
-      "equity": 1270513.76,
+      "equity": 1270513.66,
       "stock_val": 752070.99,
       "short_cash": 307697.45,
-      "withdraw_cash": 210745.32
+      "withdraw_cash": 210745.22
     },
     {
       "date": "2026-07-14",
-      "equity": 1257634.76,
+      "equity": 1257634.66,
       "stock_val": 733225.17,
       "short_cash": 307718.63,
-      "withdraw_cash": 216690.95
+      "withdraw_cash": 216690.86
     },
     {
       "date": "2026-07-15",
-      "equity": 1258362.96,
+      "equity": 1258362.86,
       "stock_val": 733917.27,
       "short_cash": 307739.82,
-      "withdraw_cash": 216705.87
+      "withdraw_cash": 216705.78
     },
     {
       "date": "2026-07-16",
-      "equity": 1260555.11,
+      "equity": 1260555.01,
       "stock_val": 736073.32,
       "short_cash": 307761.01,
-      "withdraw_cash": 216720.79
+      "withdraw_cash": 216720.69
     },
     {
       "date": "2026-07-17",
-      "equity": 1230761.47,
+      "equity": 1230761.38,
       "stock_val": 706243.57,
       "short_cash": 307782.19,
-      "withdraw_cash": 216735.71
+      "withdraw_cash": 216735.61
     },
     {
       "date": "2026-07-20",
-      "equity": 1229742.67,
+      "equity": 1229742.57,
       "stock_val": 705188.65,
       "short_cash": 307803.38,
-      "withdraw_cash": 216750.63
+      "withdraw_cash": 216750.54
     },
     {
       "date": "2026-07-21",
-      "equity": 1237305.01,
+      "equity": 1237304.92,
       "stock_val": 712714.88,
       "short_cash": 307824.57,
-      "withdraw_cash": 216765.56
+      "withdraw_cash": 216765.46
     },
     {
       "date": "2026-07-22",
-      "equity": 1241868.16,
+      "equity": 1241868.06,
       "stock_val": 717241.91,
       "short_cash": 307845.77,
-      "withdraw_cash": 216780.48
+      "withdraw_cash": 216780.38
     },
     {
       "date": "2026-07-23",
-      "equity": 1241792.7,
+      "equity": 1241792.6,
       "stock_val": 717130.34,
       "short_cash": 307866.96,
-      "withdraw_cash": 216795.4
+      "withdraw_cash": 216795.31
     },
     {
       "date": "2026-07-24",
-      "equity": 1236354.14,
+      "equity": 1236354.04,
       "stock_val": 711655.65,
       "short_cash": 307888.16,
-      "withdraw_cash": 216810.33
+      "withdraw_cash": 216810.23
     },
     {
       "date": "2026-07-27",
-      "equity": 1236724.76,
+      "equity": 1236724.67,
       "stock_val": 711990.15,
       "short_cash": 307909.35,
-      "withdraw_cash": 216825.26
+      "withdraw_cash": 216825.16
     },
     {
       "date": "2026-07-28",
-      "equity": 1216699.61,
+      "equity": 1216699.51,
       "stock_val": 691928.87,
       "short_cash": 307930.55,
-      "withdraw_cash": 216840.18
+      "withdraw_cash": 216840.09
     },
     {
       "date": "2026-07-29",
-      "equity": 1204125.88,
+      "equity": 1204125.78,
       "stock_val": 651130.18,
       "short_cash": 307951.75,
-      "withdraw_cash": 245043.94
+      "withdraw_cash": 245043.85
     },
     {
       "date": "2026-07-30",
-      "equity": 1203607.24,
+      "equity": 1203607.14,
       "stock_val": 650573.47,
       "short_cash": 307972.95,
-      "withdraw_cash": 245060.81
+      "withdraw_cash": 245060.72
     },
     {
       "date": "2026-07-31",
-      "equity": 1240903.67,
+      "equity": 1240903.58,
       "stock_val": 687831.83,
       "short_cash": 307994.16,
-      "withdraw_cash": 245077.69
+      "withdraw_cash": 245077.59
     }
   ],
   "recent_trades": [
