@@ -41,30 +41,12 @@
 
 ---
 
-## 🤖 GitHub Actions 自動化流程與抗洗盤保護機制
+## ⏰ GitHub Actions 每日兩大實戰觸發時程
 
-本專案於 `.github/workflows/auto_trader.yml` 部署了全自動化 GitHub Actions 流程，具備 **抗洗盤時間閘門保護 (Anti-Whipsaw Time-Gated Protection)**：
+GitHub Actions (`.github/workflows/auto_trader.yml`) 設定為每日台股交易日 **2 大高效率定點觸發**：
 
-```mermaid
-graph TD
-    Cron[GitHub Actions 定時觸發] --> TimeCheck{時間閘門判定}
-    
-    TimeCheck -- 09:30 / 11:30 --> Monitor[🔍 純行情數據監控時段]
-    Monitor --> UpdatePrice[更新現價與持倉現值 / 不觸發交易訊號 / 避免盤中洗盤甩種]
-    
-    TimeCheck -- 13:15 尾盤 --> Decision[🏆 實戰決策下單時段 (收盤前15分鐘)]
-    Decision --> CalcSignal[計算均線與 Tailored ATR 止損 / 99.5% K線定型]
-    CalcSignal --> Alert[發出實戰下單建議 / 長輩有 15 分鐘撮合下單]
-    
-    TimeCheck -- 14:00 盤後 --> PostMarket[🌙 盤後總結算與 Dashboard 自動發布]
-    PostMarket --> Sync[同步數據 public_data.json 與 PWA 至 GitHub Pages]
-```
-
-### 每日 4 大自動定點運算時程：
-1. 🌅 **09:30 TST (UTC 01:30)**：早盤趨勢觀察與持倉現值更新（純觀測，鎖死進出判斷）。
-2. ☀️ **11:30 TST (UTC 03:30)**：午盤量價觀察與持倉現值更新（純觀測，鎖死進出判斷）。
-3. 🏆 **13:15 TST (UTC 05:15)**：**【最關鍵實戰下單訊號】** 距離 13:30 收盤僅 15 分鐘，當日 K 線 99.5% 定型，完全過濾盤中洗盤雜訊，提供當天現場在券商 App 撮合下單時間窗！
-4. 🌙 **14:00 TST (UTC 06:00)**：盤後結算，自動將最新數據同步推送到 `Handpine/My_QuantTrader_Dashboard`。
+* 🏆 **13:15 TST (UTC 05:15)**：**【最關鍵當天下單決策點】** 距離 13:30 收盤前 15 分鐘，K 線 99.5% 定型，完全過濾盤中洗盤雜訊，提供長輩 15 分鐘在券商 App 限價/市價撮合下單時間窗！
+* 🌙 **14:00 TST (UTC 06:00)**：**【盤後最終結算】** 更新當日終值，並自動增量同步至 `Handpine/My_QuantTrader_Dashboard` PWA Live 儀表板。
 
 ---
 
@@ -87,7 +69,7 @@ graph TD
 
 ```text
 ├── .github/workflows/
-│   └── auto_trader.yml                 # 每日 4 次自動執行與抗洗盤下單訊號更新
+│   └── auto_trader.yml                 # 每日 2 次自動執行與當天下單訊號更新
 ├── backtest_reports/                   # 📊 專屬白皮書與指標指南資料夾
 │   ├── real_capital_strategy_plan.md   # 🏆 純台股實戰本金量化策略全決策白皮書
 │   └── quant_evaluation_metrics_guide.md # 📘 量化指標與偏態修正算式指南
