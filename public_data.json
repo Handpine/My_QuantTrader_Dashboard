@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03 18:04:13",
+  "updated_at": "2026-08-03 18:09:50",
   "market": "🇹🇼 純台股實戰量化交易系統 (100萬虛擬帳戶檔)",
   "status": "OPERATIONAL_VERIFIED",
   "window_mode_label": "🏆 實戰決策下單時段 (13:15 / 14:00)",
@@ -8,17 +8,20 @@
     "start_date": "2026-08-03",
     "start_date_label": "2026/08/03 (今日正式啟動)",
     "initial": 1000000.0,
-    "current_equity": 998473.64,
-    "net_profit": -1526.36,
-    "roi": -0.15,
-    "annualized_roi": -0.15,
+    "current_equity": 999401.5,
+    "net_profit": -598.5,
+    "roi": -0.06,
+    "day1_fee": 598.5,
+    "annualized_roi": -0.06,
     "mdd": -10.24,
     "sharpe_ratio": 0.88,
     "sortino_ratio": 0.88,
     "ann_calmar_ratio": 1.49,
     "cum_calmar_ratio": 2.35,
     "withdraw_cash_pool": 0.0,
-    "short_cash_base": 300000.0
+    "short_cash_base": 300000.0,
+    "long_stock_val": 698473.64,
+    "long_unspent_cash": 927.86
   },
   "audited_in_sample_metrics": {
     "period": "2018-2024 (7年訓練集對照)",
@@ -79,8 +82,8 @@
   "equity_history": [
     {
       "date": "2026-08-03",
-      "equity": 998473.64,
-      "stock_val": 698473.64,
+      "equity": 999401.5,
+      "stock_val": 699401.5,
       "short_cash": 300000.0,
       "withdraw_cash": 0.0
     }
@@ -94,7 +97,7 @@
       "price": 61.2,
       "shares": 3999,
       "amount": 244948.28,
-      "reason": "100萬虛擬帳戶今日首日建倉 (Initial Entry)"
+      "reason": "首日建倉 (買入 3999 股 / 手續費 NT$ 209.5)"
     },
     {
       "date": "2026-08-03",
@@ -104,7 +107,7 @@
       "price": 235.35,
       "shares": 742,
       "amount": 174779.33,
-      "reason": "100萬虛擬帳戶今日首日建倉 (Initial Entry)"
+      "reason": "首日建倉 (買入 742 股 / 手續費 NT$ 149.6)"
     },
     {
       "date": "2026-08-03",
@@ -114,7 +117,7 @@
       "price": 32.43,
       "shares": 5391,
       "amount": 174979.76,
-      "reason": "100萬虛擬帳戶今日首日建倉 (Initial Entry)"
+      "reason": "首日建倉 (買入 5391 股 / 手續費 NT$ 149.6)"
     },
     {
       "date": "2026-08-03",
@@ -124,7 +127,7 @@
       "price": 2425.0,
       "shares": 43,
       "amount": 104364.77,
-      "reason": "100萬虛擬帳戶今日首日建倉 (Initial Entry)"
+      "reason": "首日建倉 (買入 43 股 / 手續費 NT$ 89.8)"
     }
   ]
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇹🇼 純台股實戰本金量化策略儀表板 (100萬今日啟動)</title>
+    <title>🇹🇼 純台股實戰本金量化策略儀表板</title>
     <!-- PWA Support -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="pwa_icon.png">
@@ -108,10 +108,11 @@
             transform: translateY(-1px);
         }
 
+        /* 清爽極簡頂部 KPI 三卡片 */
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
@@ -120,7 +121,7 @@
             backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
             border-radius: var(--card-radius);
-            padding: 1.5rem;
+            padding: 1.6rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
@@ -132,17 +133,16 @@
         }
 
         .card-title {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
             font-weight: 600;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .main-stat {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
 
         .stat-positive { color: var(--accent-green); }
@@ -150,10 +150,10 @@
         .stat-gold { color: var(--accent-gold); }
 
         .sub-stat {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--text-secondary);
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
         }
 
         .chart-section {
@@ -162,7 +162,7 @@
 
         .chart-container {
             position: relative;
-            height: 350px;
+            height: 320px;
             width: 100%;
         }
 
@@ -194,9 +194,9 @@
 
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.6rem;
+            padding: 0.25rem 0.65rem;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 600;
         }
 
@@ -204,10 +204,18 @@
         .badge-wait { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); border: 1px solid var(--accent-blue); }
         .badge-gold { background: rgba(245, 158, 11, 0.2); color: var(--accent-gold); border: 1px solid var(--accent-gold); }
 
+        /* 底部量化指標表格專用樣式 */
+        .metrics-table th {
+            width: 25%;
+        }
+        .metrics-table td {
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             body { padding: 1rem; }
             header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-            .main-stat { font-size: 1.6rem; }
+            .main-stat { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -221,7 +229,7 @@
             </div>
         </header>
 
-        <!-- KPI 數據卡片區域 -->
+        <!-- 頂部清爽三卡片 (只留核心淨值、持倉現值與活存池) -->
         <div class="summary-grid">
             <div class="card">
                 <div class="card-header">
@@ -230,43 +238,31 @@
                 </div>
                 <div class="main-stat stat-positive" id="virtual-equity">NT$ --</div>
                 <div class="sub-stat">
-                    <span>累積淨利: <strong id="virtual-profit">--</strong></span>
+                    <span>當前收益: <strong id="virtual-profit">--</strong></span>
                     <span>ROI: <strong id="virtual-roi">--%</strong></span>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">🏆 卡瑪比率 (Calmar Ratio)</span>
-                    <span class="badge badge-gold">收益/回撤效率</span>
+                    <span class="card-title">70% 多頭波段部位總現值</span>
+                    <span class="badge badge-wait">70萬底金配額</span>
                 </div>
-                <div class="main-stat stat-gold" id="calmar-val">--</div>
+                <div class="main-stat" style="color: #60a5fa;" id="long-stock-equity">NT$ --</div>
                 <div class="sub-stat">
-                    <span>年化 Calmar: <strong id="ann-calmar">--</strong></span>
-                    <span>累積 Calmar: <strong id="cum-calmar">--</strong></span>
+                    <span>持倉市值: <strong id="long-stock-val">--</strong></span>
+                    <span>剩餘現金: <strong id="long-stock-cash">--</strong></span>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">🛡️ 索提諾比率 (Sortino Ratio)</span>
-                    <span class="badge badge-wait">下行風險保護</span>
-                </div>
-                <div class="main-stat" style="color: #60a5fa;" id="sortino-val">--</div>
-                <div class="sub-stat">
-                    <span>Sharpe 比率: <strong id="sharpe-val">--</strong></span>
-                    <span>盲測 MDD: <strong id="mdd-val" class="stat-positive">--%</strong></span>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">方法 A 撥轉活存保本池</span>
+                    <span class="card-title">30% 防禦活存與撥轉池</span>
                     <span class="badge badge-gold">無風險 1.75%</span>
                 </div>
-                <div class="main-stat stat-gold" id="withdraw-pool">NT$ 0</div>
+                <div class="main-stat stat-gold" id="short-base">NT$ 300,000</div>
                 <div class="sub-stat">
-                    <span>底金防禦 (30%): <strong id="short-base">NT$ 300,000</strong></span>
+                    <span>方法 A 已撥轉活存利潤池: <strong id="withdraw-pool">NT$ 0</strong></span>
                 </div>
             </div>
         </div>
@@ -274,8 +270,8 @@
         <!-- 淨值圖表區域 -->
         <div class="card chart-section">
             <div class="card-header">
-                <span class="card-title">📊 資產淨值歷史參考曲線 (Equity Curve)</span>
-                <span style="font-size: 0.8rem; color: var(--text-secondary);">起始日期: 2026/08/03 (今日正式啟動)</span>
+                <span class="card-title">📊 100萬虛擬帳戶 資產淨值歷史曲線 (Equity Curve)</span>
+                <span style="font-size: 0.82rem; color: var(--text-secondary);" id="window-mode-tag">即時監控中</span>
             </div>
             <div class="chart-container">
                 <canvas id="equityChart"></canvas>
@@ -310,7 +306,7 @@
         <!-- 交易日誌歷史 -->
         <div class="card table-section">
             <div class="card-header">
-                <span class="card-title">📋 歷史參考離場與進場交易紀錄 (Trade Logs)</span>
+                <span class="card-title">📋 實戰下單與進離場交易紀錄 (Trade Logs)</span>
             </div>
             <div style="overflow-x: auto;">
                 <table>
@@ -332,6 +328,64 @@
                 </table>
             </div>
         </div>
+
+        <!-- 底部量化指標與歷史對照總表 (精緻舒適獨立表格) -->
+        <div class="card table-section">
+            <div class="card-header">
+                <span class="card-title">🏆 策略量化評估指標與對照總表 (Quant Evaluation Metrics Summary)</span>
+                <span class="badge badge-gold">權威幾何審計</span>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="metrics-table">
+                    <thead>
+                        <tr>
+                            <th>量化評估指標名稱</th>
+                            <th>1.5年盲測集數據 (2025-2026)</th>
+                            <th>7年訓練集數據 (2018-2024)</th>
+                            <th>幾何與風險意涵解析</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🏆 <strong>年化 Calmar 比率</strong> (年化ROI / MDD)</td>
+                            <td><strong style="color: #f59e0b;" id="m-ann-calmar">1.49</strong></td>
+                            <td><strong style="color: #60a5fa;">1.14</strong></td>
+                            <td>1年操作期內承受回撤的投資效率（勝過台積電單壓 0.65）</td>
+                        </tr>
+                        <tr>
+                            <td>🏆 <strong>累積 Calmar 比率</strong> (總ROI / MDD)</td>
+                            <td><strong style="color: #f59e0b;" id="m-cum-calmar">2.35</strong></td>
+                            <td><strong style="color: #60a5fa;">9.34</strong></td>
+                            <td>長線累積總獲利相對最大歷史回撤的幾何比值</td>
+                        </tr>
+                        <tr>
+                            <td>🛡️ <strong>索提諾比率 (Sortino Ratio)</strong></td>
+                            <td><strong style="color: #10b981;" id="m-sortino">0.88</strong></td>
+                            <td><strong style="color: #10b981;">1.12</strong></td>
+                            <td>將水面上暴衝山峰塗白削平，專門精確測量水下坑洞下行風險</td>
+                        </tr>
+                        <tr>
+                            <td>📈 <strong>夏普比率 (Sharpe Ratio)</strong></td>
+                            <td><strong style="color: #f3f4f6;" id="m-sharpe">0.88</strong></td>
+                            <td><strong style="color: #f3f4f6;">0.90</strong></td>
+                            <td>總波動率相對超額報酬之比例（含雙向上行與下行波動）</td>
+                        </tr>
+                        <tr>
+                            <td>📉 <strong>最大歷史回撤 (MDD)</strong></td>
+                            <td><strong style="color: #ef4444;" id="m-mdd">-10.24%</strong></td>
+                            <td><strong style="color: #10b981;">-5.85%</strong></td>
+                            <td>策略歷史最慘虧損控制（將台積電 -44.8% 回撤砍至 1/8）</td>
+                        </tr>
+                        <tr>
+                            <td>🎯 <strong>歷史預期勝率 (Win Rate)</strong></td>
+                            <td><strong style="color: #10b981;">> 75.0%</strong></td>
+                            <td><strong style="color: #10b981;">76.8%</strong></td>
+                            <td>1年滾動視角下實現獲利平倉的歷史極大化機率</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -348,6 +402,7 @@
                 const data = await response.json();
                 
                 document.getElementById('update-time').innerText = '最後更新: ' + data.updated_at;
+                document.getElementById('window-mode-tag').innerText = data.window_mode_label || '即時監控中';
                 
                 // 100萬虛擬帳戶 (今日 2026-08-03 啟動)
                 const acc = data.virtual_account_1m;
@@ -356,18 +411,22 @@
                 document.getElementById('virtual-profit').innerText = (acc.net_profit >= 0 ? '+' : '') + 'NT$ ' + acc.net_profit.toLocaleString();
                 document.getElementById('virtual-roi').innerText = (acc.roi >= 0 ? '+' : '') + acc.roi + '%';
                 
-                // Calmar & Sortino Ratio 顯示
-                document.getElementById('calmar-val').innerText = 'Calmar ' + acc.ann_calmar_ratio;
-                document.getElementById('ann-calmar').innerText = acc.ann_calmar_ratio;
-                document.getElementById('cum-calmar').innerText = acc.cum_calmar_ratio;
+                // 70% 多頭持倉總值
+                const longStockTotal = (acc.long_stock_val || 0) + (acc.long_unspent_cash || 0);
+                document.getElementById('long-stock-equity').innerText = 'NT$ ' + longStockTotal.toLocaleString();
+                document.getElementById('long-stock-val').innerText = 'NT$ ' + (acc.long_stock_val || 0).toLocaleString();
+                document.getElementById('long-stock-cash').innerText = 'NT$ ' + (acc.long_unspent_cash || 0).toLocaleString();
 
-                document.getElementById('sortino-val').innerText = 'Sortino ' + acc.sortino_ratio;
-                document.getElementById('sharpe-val').innerText = acc.sharpe_ratio;
-                document.getElementById('mdd-val').innerText = acc.mdd + '%';
-                
-                // 利潤撥轉池
-                document.getElementById('withdraw-pool').innerText = 'NT$ ' + (acc.withdraw_cash_pool || 0).toLocaleString();
+                // 30% 利潤撥轉池與底金
                 document.getElementById('short-base').innerText = 'NT$ ' + acc.short_cash_base.toLocaleString();
+                document.getElementById('withdraw-pool').innerText = 'NT$ ' + (acc.withdraw_cash_pool || 0).toLocaleString();
+
+                // 底部量化指標表格
+                document.getElementById('m-ann-calmar').innerText = acc.ann_calmar_ratio;
+                document.getElementById('m-cum-calmar').innerText = acc.cum_calmar_ratio;
+                document.getElementById('m-sortino').innerText = acc.sortino_ratio;
+                document.getElementById('m-sharpe').innerText = acc.sharpe_ratio;
+                document.getElementById('m-mdd').innerText = acc.mdd + '%';
 
                 // 持倉表格
                 const posBody = document.getElementById('position-table-body');
@@ -438,7 +497,7 @@
                     labels: labels,
                     datasets: [
                         {
-                            label: '100萬虛擬帳戶歷史參考淨值 (NT$)',
+                            label: '100萬虛擬帳戶淨值 (NT$)',
                             data: equityData,
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
