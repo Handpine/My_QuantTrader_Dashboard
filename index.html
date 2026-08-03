@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇹🇼 純台股實戰本金量化策略儀表板 (100萬虛擬帳戶)</title>
+    <title>🇹🇼 純台股實戰本金量化策略儀表板 (100萬今日啟動)</title>
     <!-- PWA Support -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="pwa_icon.png">
@@ -72,6 +72,12 @@
             gap: 0.5rem;
         }
 
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
         .update-badge {
             font-size: 0.85rem;
             color: var(--text-secondary);
@@ -79,6 +85,27 @@
             padding: 0.4rem 0.9rem;
             border-radius: 30px;
             border: 1px solid var(--card-border);
+        }
+
+        .btn-refresh {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2));
+            color: var(--text-primary);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            padding: 0.45rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-refresh:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(16, 185, 129, 0.4));
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+            transform: translateY(-1px);
         }
 
         .summary-grid {
@@ -188,7 +215,10 @@
     <div class="container">
         <header>
             <h1>🇹🇼 純台股實戰本金量化策略儀表板</h1>
-            <div class="update-badge" id="update-time">讀取中...</div>
+            <div class="header-controls">
+                <button class="btn-refresh" onclick="loadDashboardData(true)">🔄 重新整理數據</button>
+                <div class="update-badge" id="update-time">讀取中...</div>
+            </div>
         </header>
 
         <!-- KPI 數據卡片區域 -->
@@ -196,7 +226,7 @@
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">100萬虛擬帳戶 總淨值</span>
-                    <span class="badge badge-long">實戰模擬</span>
+                    <span class="badge badge-long" id="start-date-label">2026/08/03 今日啟動</span>
                 </div>
                 <div class="main-stat stat-positive" id="virtual-equity">NT$ --</div>
                 <div class="sub-stat">
@@ -234,7 +264,7 @@
                     <span class="card-title">方法 A 撥轉活存保本池</span>
                     <span class="badge badge-gold">無風險 1.75%</span>
                 </div>
-                <div class="main-stat stat-gold" id="withdraw-pool">NT$ --</div>
+                <div class="main-stat stat-gold" id="withdraw-pool">NT$ 0</div>
                 <div class="sub-stat">
                     <span>底金防禦 (30%): <strong id="short-base">NT$ 300,000</strong></span>
                 </div>
@@ -244,8 +274,8 @@
         <!-- 淨值圖表區域 -->
         <div class="card chart-section">
             <div class="card-header">
-                <span class="card-title">📊 100萬虛擬帳戶 資產淨值歷史曲線 (Equity Curve)</span>
-                <span style="font-size: 0.8rem; color: var(--text-secondary);">2025/01 - 至今</span>
+                <span class="card-title">📊 資產淨值歷史參考曲線 (Equity Curve)</span>
+                <span style="font-size: 0.8rem; color: var(--text-secondary);">起始日期: 2026/08/03 (今日正式啟動)</span>
             </div>
             <div class="chart-container">
                 <canvas id="equityChart"></canvas>
@@ -280,7 +310,7 @@
         <!-- 交易日誌歷史 -->
         <div class="card table-section">
             <div class="card-header">
-                <span class="card-title">📋 最近平倉與進場交易紀錄 (Trade Logs)</span>
+                <span class="card-title">📋 歷史參考離場與進場交易紀錄 (Trade Logs)</span>
             </div>
             <div style="overflow-x: auto;">
                 <table>
@@ -307,15 +337,21 @@
     <script>
         let chartInstance = null;
 
-        async function loadDashboardData() {
+        async function loadDashboardData(manualRefresh = false) {
             try {
+                const updateBtn = document.querySelector('.btn-refresh');
+                if (manualRefresh && updateBtn) {
+                    updateBtn.innerText = '⏳ 載入中...';
+                }
+                
                 const response = await fetch('public_data.json?t=' + new Date().getTime());
                 const data = await response.json();
                 
                 document.getElementById('update-time').innerText = '最後更新: ' + data.updated_at;
                 
-                // 100萬虛擬帳戶
+                // 100萬虛擬帳戶 (今日 2026-08-03 啟動)
                 const acc = data.virtual_account_1m;
+                document.getElementById('start-date-label').innerText = acc.start_date_label || '2026/08/03 今日啟動';
                 document.getElementById('virtual-equity').innerText = 'NT$ ' + acc.current_equity.toLocaleString();
                 document.getElementById('virtual-profit').innerText = (acc.net_profit >= 0 ? '+' : '') + 'NT$ ' + acc.net_profit.toLocaleString();
                 document.getElementById('virtual-roi').innerText = (acc.roi >= 0 ? '+' : '') + acc.roi + '%';
@@ -330,7 +366,7 @@
                 document.getElementById('mdd-val').innerText = acc.mdd + '%';
                 
                 // 利潤撥轉池
-                document.getElementById('withdraw-pool').innerText = 'NT$ ' + acc.withdraw_cash_pool.toLocaleString();
+                document.getElementById('withdraw-pool').innerText = 'NT$ ' + (acc.withdraw_cash_pool || 0).toLocaleString();
                 document.getElementById('short-base').innerText = 'NT$ ' + acc.short_cash_base.toLocaleString();
 
                 // 持倉表格
@@ -377,6 +413,10 @@
                 // 繪製 Chart.js
                 renderChart(data.equity_history);
 
+                if (manualRefresh && updateBtn) {
+                    setTimeout(() => { updateBtn.innerText = '🔄 重新整理數據'; }, 500);
+                }
+
             } catch (err) {
                 console.error("載入儀表板數據失敗:", err);
             }
@@ -398,7 +438,7 @@
                     labels: labels,
                     datasets: [
                         {
-                            label: '100萬虛擬帳戶淨值 (NT$)',
+                            label: '100萬虛擬帳戶歷史參考淨值 (NT$)',
                             data: equityData,
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
@@ -432,7 +472,7 @@
         }
 
         loadDashboardData();
-        setInterval(loadDashboardData, 300000); // 5分鐘刷新一次
+        setInterval(loadDashboardData, 300000); // 5分鐘自動刷新
     </script>
 </body>
 </html>
