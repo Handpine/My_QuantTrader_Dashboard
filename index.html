@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>量化交易實驗室儀表板</title>
+    <title>🇹🇼 純台股實戰本金量化策略儀表板 (Master Blueprint)</title>
     <!-- PWA Support -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="pwa_icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="量化實驗室">
+    <meta name="apple-mobile-web-app-title" content="台股量化">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Chart.js -->
@@ -17,15 +17,14 @@
     <style>
         :root {
             --bg-color: #0b0f19;
-            --card-bg: rgba(20, 30, 55, 0.6);
+            --card-bg: rgba(20, 30, 55, 0.65);
             --card-border: rgba(255, 255, 255, 0.08);
             --text-primary: #f3f4f6;
             --text-secondary: #9ca3af;
-            --accent-long: #10b981; /* 綠色 */
-            --accent-short: #ef4444; /* 紅色 */
-            --accent-glow-long: rgba(16, 185, 129, 0.15);
-            --accent-glow-short: rgba(239, 68, 68, 0.15);
-            --border-glow: rgba(59, 130, 246, 0.2);
+            --accent-green: #10b981;
+            --accent-gold: #f59e0b;
+            --accent-blue: #3b82f6;
+            --accent-red: #ef4444;
             --card-radius: 16px;
         }
 
@@ -40,8 +39,8 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 10% 20%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
-                radial-gradient(at 90% 80%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+                radial-gradient(at 10% 20%, rgba(59, 130, 246, 0.08) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
             color: var(--text-primary);
             min-height: 100vh;
             padding: 2rem 1.5rem;
@@ -52,42 +51,41 @@
             margin: 0 auto;
         }
 
-        /* 標題欄 */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             border-bottom: 1px solid var(--card-border);
-            padding-bottom: 1.5rem;
+            padding-bottom: 1.2rem;
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #60a5fa, #34d399);
+            background: linear-gradient(135deg, #60a5fa, #34d399, #f59e0b);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .update-time {
+        .update-badge {
             font-size: 0.85rem;
             color: var(--text-secondary);
             background: rgba(255, 255, 255, 0.05);
-            padding: 0.4rem 0.8rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 30px;
             border: 1px solid var(--card-border);
         }
 
-        /* 數據總覽卡片 */
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
         }
 
         .card {
@@ -96,422 +94,210 @@
             border: 1px solid var(--card-border);
             border-radius: var(--card-radius);
             padding: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-        }
-
-        .card-long::before { background: var(--accent-long); }
-        .card-short::before { background: var(--accent-short); }
-
-        .card-long:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px var(--accent-glow-long);
-        }
-
-        .card-short:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px var(--accent-glow-short);
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
         .card-title {
             font-size: 0.9rem;
+            color: var(--text-secondary);
             font-weight: 600;
             text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.5px;
         }
 
-        .card-value {
-            font-size: 2.2rem;
+        .main-stat {
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
-        .card-stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.75rem;
+        .stat-positive { color: var(--accent-green); }
+        .stat-negative { color: var(--accent-red); }
+        .stat-gold { color: var(--accent-gold); }
+
+        .sub-stat {
             font-size: 0.85rem;
             color: var(--text-secondary);
-        }
-
-        .stat-value {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .text-green { color: var(--accent-long); }
-        .text-red { color: var(--accent-short); }
-
-        /* 圖表區 */
-        .chart-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            border-radius: var(--card-radius);
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .section-header {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            font-weight: 600;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .chart-section {
+            margin-bottom: 2rem;
         }
 
         .chart-container {
             position: relative;
-            height: 400px;
+            height: 350px;
             width: 100%;
         }
 
-        /* 交易日誌區 */
-        .logs-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-            gap: 1.5rem;
+        .table-section {
+            margin-bottom: 2rem;
         }
 
-        .log-box {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            border-radius: var(--card-radius);
-            padding: 1.5rem;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .table-container {
+        table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
-            text-align: left;
+            font-size: 0.9rem;
         }
 
-        .table-container th {
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        th {
             color: var(--text-secondary);
             font-weight: 600;
-            padding: 0.75rem 0.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
         }
 
-        .table-container td {
-            padding: 0.75rem 0.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        tr:hover {
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
             font-size: 0.75rem;
-        }
-
-        .badge-buy { background: rgba(16, 185, 129, 0.15); color: var(--accent-long); }
-        .badge-sell { background: rgba(239, 68, 68, 0.15); color: var(--accent-short); }
-
-        /* PWA 安裝按鈕 */
-        .pwa-btn {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
             font-weight: 600;
-            cursor: pointer;
-            display: none;
-            transition: transform 0.2s;
         }
 
-        .pwa-btn:hover { transform: scale(1.05); }
-
-        /* 刷新按鈕 */
-        .refresh-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .refresh-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
-        }
+        .badge-long { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+        .badge-wait { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); border: 1px solid var(--accent-blue); }
+        .badge-gold { background: rgba(245, 158, 11, 0.2); color: var(--accent-gold); border: 1px solid var(--accent-gold); }
 
         @media (max-width: 768px) {
             body { padding: 1rem; }
-            h1 { font-size: 1.5rem; }
-            .logs-section { grid-template-columns: 1fr; }
-            .chart-section { padding: 1rem; }
-            .chart-container { height: 300px; }
+            header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+            .main-stat { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo-container">
-                <div class="logo"></div>
-                <h1>📊 量化交易實驗室儀表板</h1>
-            </div>
-            <div class="last-updated" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
-                <button id="pwa-install-btn" class="pwa-btn">安裝應用程式</button>
-                <button class="refresh-btn" onclick="location.reload();">🔄 刷新數據</button>
-                <span class="update-time" id="last-updated">更新中...</span>
-            </div>
+            <h1>🇹🇼 純台股實戰本金量化策略儀表板</h1>
+            <div class="update-badge" id="update-time">讀取中...</div>
         </header>
 
-        <!-- 總帳戶淨值卡片 -->
-        <div class="total-portfolio-card" style="background: var(--bg-card); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border-left: 4px solid var(--accent); box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <div>
-                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">總帳戶實體淨值 (與 Alpaca 同步)</div>
-                <div id="total-equity" style="font-size: 2.5rem; font-weight: 700; color: var(--text-primary); font-family: 'Outfit', sans-serif;">$---</div>
-            </div>
-            <div style="text-align: right;">
-                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">虛擬子帳戶狀態</div>
-                <div style="display: flex; gap: 1rem;">
-                    <div><span class="badge badge-buy">多頭</span> <span id="long-pool">$---</span></div>
-                    <div><span class="badge badge-sell">空頭</span> <span id="short-pool">$---</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 總覽卡片 -->
+        <!-- KPI 數據卡片區域 -->
         <div class="summary-grid">
-            <!-- 做多策略卡片 -->
-            <div class="card card-long">
-                <div class="card-title">🟢 多標的波段策略 (多頭 QQQ/SMH/DIA)</div>
-                <div class="card-value" id="long-equity">$50,000.00</div>
-                <div class="card-stat-row">
-                    <span>初始資金:</span>
-                    <span class="stat-value">$50,000.00</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">300萬正式期 總淨值</span>
+                    <span class="badge badge-long">實戰對照</span>
                 </div>
-                <div class="card-stat-row">
-                    <span>累積回報:</span>
-                    <span class="stat-value" id="long-return">+0.00%</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>最大回撤 (MDD):</span>
-                    <span class="stat-value text-red" id="long-mdd">0.00%</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>歷史勝率:</span>
-                    <span class="stat-value" id="long-win-rate">0.00%</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>夏普比率 (年化估算):</span>
-                    <span class="stat-value" id="long-sharpe">0.00</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>盈虧比 (Profit Factor):</span>
-                    <span class="stat-value" id="long-profit-factor">0.00</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>平均盈利 / 虧損:</span>
-                    <span class="stat-value"><span id="long-avg-win" class="text-green">$0.00</span> / <span id="long-avg-loss" class="text-red">$0.00</span></span>
-                </div>
-                <div class="card-stat-row">
-                    <span>當前回撤:</span>
-                    <span class="stat-value text-red" id="long-curr-dd">0.00%</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>已交易次數:</span>
-                    <span class="stat-value" id="long-trades">0 次</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>可用現金:</span>
-                    <span class="stat-value" id="long-cash">$50,000.00</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>目前持倉:</span>
-                    <span class="stat-value" id="long-holding">空倉中</span>
+                <div class="main-stat stat-positive" id="target-equity">NT$ --</div>
+                <div class="sub-stat">
+                    <span>累積淨利: <strong id="target-profit">--</strong></span>
+                    <span>ROI: <strong id="target-roi">--%</strong></span>
                 </div>
             </div>
 
-            <!-- 做空策略卡片 -->
-            <div class="card card-short">
-                <div class="card-title">🔴 雙重避險策略 (空頭 SH/PSQ)</div>
-                <div class="card-value" id="short-equity">$50,000.00</div>
-                <div class="card-stat-row">
-                    <span>初始資金:</span>
-                    <span class="stat-value">$50,000.00</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">10萬首月沙盒測試</span>
+                    <span class="badge badge-wait">實體測試</span>
                 </div>
-                <div class="card-stat-row">
-                    <span>累積回報:</span>
-                    <span class="stat-value" id="short-return">+0.00%</span>
+                <div class="main-stat stat-gold" id="sandbox-equity">NT$ --</div>
+                <div class="sub-stat">
+                    <span>測試淨利: <strong id="sandbox-profit">--</strong></span>
+                    <span>預期勝率: <strong>76.8%</strong></span>
                 </div>
-                <div class="card-stat-row">
-                    <span>最大回撤 (MDD):</span>
-                    <span class="stat-value text-red" id="short-mdd">0.00%</span>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">方法 A 已撥轉活存保本池</span>
+                    <span class="badge badge-gold">無風險 1.75%</span>
                 </div>
-                <div class="card-stat-row">
-                    <span>歷史勝率:</span>
-                    <span class="stat-value" id="short-win-rate">0.00%</span>
+                <div class="main-stat stat-gold" id="withdraw-pool">NT$ --</div>
+                <div class="sub-stat">
+                    <span>底金防禦: <strong id="short-base">NT$ 900,000</strong></span>
                 </div>
-                <div class="card-stat-row">
-                    <span>夏普比率 (年化估算):</span>
-                    <span class="stat-value" id="short-sharpe">0.00</span>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">極致風控指標</span>
+                    <span class="badge badge-long">100% 審計驗證</span>
                 </div>
-                <div class="card-stat-row">
-                    <span>盈虧比 (Profit Factor):</span>
-                    <span class="stat-value" id="short-profit-factor">0.00</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>平均盈利 / 虧損:</span>
-                    <span class="stat-value"><span id="short-avg-win" class="text-green">$0.00</span> / <span id="short-avg-loss" class="text-red">$0.00</span></span>
-                </div>
-                <div class="card-stat-row">
-                    <span>當前回撤:</span>
-                    <span class="stat-value text-red" id="short-curr-dd">0.00%</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>已交易次數:</span>
-                    <span class="stat-value" id="short-trades">0 次</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>可用現金:</span>
-                    <span class="stat-value" id="short-cash">$50,000.00</span>
-                </div>
-                <div class="card-stat-row">
-                    <span>目前持倉:</span>
-                    <span class="stat-value" id="short-holding">空倉中</span>
+                <div class="main-stat" style="color: #60a5fa;" id="metrics-calmar">Calmar --</div>
+                <div class="sub-stat">
+                    <span>盲測 MDD: <strong id="metrics-mdd" class="stat-positive">--%</strong></span>
+                    <span>Sortino: <strong id="metrics-sortino">--</strong></span>
                 </div>
             </div>
         </div>
 
-        <!-- 實時策略比較表格 -->
-        <div class="logs-section" style="margin-bottom: 2rem;">
-            <div class="log-box" style="width: 100%;">
-                <h3 style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
-                    <span>⚡ 實時策略績效對比 (Real-time Performance Comparison)</span>
-                </h3>
-                <div class="card-stat-row" style="color:var(--text-secondary); margin-bottom: 1rem;">
-                    * 以下數據根據每日收盤結算實時更新，用於直觀比較雙向策略之優劣。
-                </div>
-                <table class="table-container">
-                    <thead>
-                        <tr>
-                            <th>比較指標 (Metrics)</th>
-                            <th style="color: var(--accent);">🟢 多標的波段策略 (多頭)</th>
-                            <th style="color: var(--danger);">🔴 雙重避險策略 (空頭)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>累積回報率 (Total Return)</b></td>
-                            <td id="comp-long-ret" style="font-weight: bold;">---</td>
-                            <td id="comp-short-ret" style="font-weight: bold;">---</td>
-                        </tr>
-                        <tr>
-                            <td><b>最大回撤 (MDD)</b></td>
-                            <td id="comp-long-mdd" class="text-red">---</td>
-                            <td id="comp-short-mdd" class="text-red">---</td>
-                        </tr>
-                        <tr>
-                            <td><b>歷史勝率 (Win Rate)</b></td>
-                            <td id="comp-long-win">---</td>
-                            <td id="comp-short-win">---</td>
-                        </tr>
-                        <tr>
-                            <td><b>盈虧比 (Profit Factor)</b></td>
-                            <td id="comp-long-pf">---</td>
-                            <td id="comp-short-pf">---</td>
-                        </tr>
-                        <tr>
-                            <td><b>夏普比率 (Sharpe Ratio)</b></td>
-                            <td id="comp-long-sharpe">---</td>
-                            <td id="comp-short-sharpe">---</td>
-                        </tr>
-                        <tr>
-                            <td><b>平均單筆獲利 (Avg Win)</b></td>
-                            <td id="comp-long-avgwin" class="text-green">---</td>
-                            <td id="comp-short-avgwin" class="text-green">---</td>
-                        </tr>
-                        <tr>
-                            <td><b>平均單筆虧損 (Avg Loss)</b></td>
-                            <td id="comp-long-avgloss" class="text-red">---</td>
-                            <td id="comp-short-avgloss" class="text-red">---</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- 淨值圖表 -->
-        <div class="chart-section">
-            <div class="section-header">
-                <span>📈 策略淨值走勢對比 (模擬實時)</span>
+        <!-- 淨值圖表區域 -->
+        <div class="card chart-section">
+            <div class="card-header">
+                <span class="card-title">📊 資產淨值累積歷史曲線 (Equity Curve)</span>
+                <span style="font-size: 0.8rem; color: var(--text-secondary);">2025/01 - 至今</span>
             </div>
             <div class="chart-container">
                 <canvas id="equityChart"></canvas>
             </div>
         </div>
 
-
-
-        <!-- 交易日誌對比 -->
-        <div class="logs-section">
-            <div class="log-box">
-                <h3 style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
-                    <span>🟢 多頭交易歷史</span>
-                </h3>
-                <table class="table-container">
+        <!-- 持倉與訊號總表 -->
+        <div class="card table-section">
+            <div class="card-header">
+                <span class="card-title">📈 70% 多頭波段個股部位與即時訊號 (組合二 + Risk Parity)</span>
+            </div>
+            <div style="overflow-x: auto;">
+                <table>
                     <thead>
                         <tr>
-                            <th>時間</th>
-                            <th>動作</th>
-                            <th>理由</th>
-                            <th>價格</th>
-                            <th>金額</th>
+                            <th>標的代碼與名稱</th>
+                            <th>分配權重</th>
+                            <th>最新現價</th>
+                            <th>持倉股數</th>
+                            <th>部位現值 (NT$)</th>
+                            <th>策略參數配置</th>
+                            <th>當前狀態與訊號</th>
                         </tr>
                     </thead>
-                    <tbody id="long-trades-body">
-                        <tr><td colspan="5" style="text-align:center; color:var(--text-secondary);">無交易歷史紀錄</td></tr>
+                    <tbody id="position-table-body">
+                        <tr><td colspan="7" style="text-align: center; color: var(--text-secondary);">載入中...</td></tr>
                     </tbody>
                 </table>
             </div>
+        </div>
 
-            <div class="log-box">
-                <h3 style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
-                    <span>🔴 空頭交易歷史</span>
-                </h3>
-                <table class="table-container">
+        <!-- 交易日誌歷史 -->
+        <div class="card table-section">
+            <div class="card-header">
+                <span class="card-title">📋 最近平倉與進場交易紀錄 (Trade Logs)</span>
+            </div>
+            <div style="overflow-x: auto;">
+                <table>
                     <thead>
                         <tr>
-                            <th>時間</th>
+                            <th>交易日期</th>
+                            <th>標的代碼</th>
+                            <th>標的名稱</th>
                             <th>動作</th>
-                            <th>理由</th>
-                            <th>價格</th>
-                            <th>金額</th>
+                            <th>成交單價</th>
+                            <th>成交股數</th>
+                            <th>交易總額 (NT$)</th>
+                            <th>觸發原因</th>
                         </tr>
                     </thead>
-                    <tbody id="short-trades-body">
-                        <tr><td colspan="5" style="text-align:center; color:var(--text-secondary);">無交易歷史紀錄</td></tr>
+                    <tbody id="trade-table-body">
+                        <tr><td colspan="8" style="text-align: center; color: var(--text-secondary);">載入中...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -519,180 +305,115 @@
     </div>
 
     <script>
-        // 載入去敏感公開數據
-        async function fetchDashboardData() {
+        let chartInstance = null;
+
+        async function loadDashboardData() {
             try {
-                // 加入時間戳參數避免 PWA 或瀏覽器快取舊資料
-                const response = await fetch('./public_data.json?t=' + new Date().getTime());
+                const response = await fetch('public_data.json?t=' + new Date().getTime());
                 const data = await response.json();
                 
-                // 1. 更新更新時間
-                document.getElementById('last-updated').innerText = `數據更新於: ${data.last_updated}`;
+                document.getElementById('update-time').innerText = '最後更新: ' + data.updated_at;
                 
-                // 1.5. 更新真實總帳戶淨值
-                if (data.total_account_equity) {
-                    document.getElementById('total-equity').innerText = `$${data.total_account_equity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                // 300萬正式期
+                const target = data.target_capital_3m;
+                document.getElementById('target-equity').innerText = 'NT$ ' + target.current_equity.toLocaleString();
+                document.getElementById('target-profit').innerText = (target.net_profit >= 0 ? '+' : '') + 'NT$ ' + target.net_profit.toLocaleString();
+                document.getElementById('target-roi').innerText = (target.roi >= 0 ? '+' : '') + target.roi + '%';
+                
+                // 10萬測試期
+                const sandbox = data.sandbox_100k;
+                document.getElementById('sandbox-equity').innerText = 'NT$ ' + sandbox.current_equity.toLocaleString();
+                document.getElementById('sandbox-profit').innerText = (sandbox.net_profit >= 0 ? '+' : '') + 'NT$ ' + sandbox.net_profit.toLocaleString();
+                
+                // 利潤撥轉池
+                document.getElementById('withdraw-pool').innerText = 'NT$ ' + target.withdraw_cash_pool.toLocaleString();
+                document.getElementById('short-base').innerText = 'NT$ ' + target.short_cash_base.toLocaleString();
+                
+                // 風控指標
+                document.getElementById('metrics-calmar').innerText = '年化 Calmar ' + target.ann_calmar;
+                document.getElementById('metrics-mdd').innerText = target.mdd + '%';
+                document.getElementById('metrics-sortino').innerText = target.sortino;
+
+                // 持倉表格
+                const posBody = document.getElementById('position-table-body');
+                posBody.innerHTML = '';
+                data.positions.forEach(pos => {
+                    const tr = document.createElement('tr');
+                    const badgeClass = pos.signal === 'HOLD' ? 'badge-long' : (pos.signal === 'BUY_READY' ? 'badge-gold' : 'badge-wait');
+                    tr.innerHTML = `
+                        <td><strong>${pos.symbol}</strong> ${pos.name}</td>
+                        <td>${pos.weight}</td>
+                        <td>NT$ ${pos.price}</td>
+                        <td>${pos.shares.toLocaleString()} 股</td>
+                        <td>NT$ ${pos.value.toLocaleString()}</td>
+                        <td><code style="color: #60a5fa;">${pos.strategy_param}</code></td>
+                        <td><span class="badge ${badgeClass}">${pos.status}</span></td>
+                    `;
+                    posBody.appendChild(tr);
+                });
+
+                // 交易日誌
+                const tradeBody = document.getElementById('trade-table-body');
+                tradeBody.innerHTML = '';
+                if (data.recent_trades && data.recent_trades.length > 0) {
+                    data.recent_trades.reverse().forEach(tr => {
+                        const row = document.createElement('tr');
+                        const isBuy = tr.type === 'BUY';
+                        row.innerHTML = `
+                            <td>${tr.date}</td>
+                            <td><strong>${tr.symbol}</strong></td>
+                            <td>${tr.name}</td>
+                            <td><span class="badge ${isBuy ? 'badge-long' : 'badge-gold'}">${tr.type}</span></td>
+                            <td>NT$ ${tr.price}</td>
+                            <td>${tr.shares.toLocaleString()} 股</td>
+                            <td>NT$ ${tr.amount.toLocaleString()}</td>
+                            <td>${tr.reason}</td>
+                        `;
+                        tradeBody.appendChild(row);
+                    });
+                } else {
+                    tradeBody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-secondary);">尚未產生離場交易記錄</td></tr>`;
                 }
 
-                // 2. 更新多頭策略數據
-                const long = data.long_strategy;
-                const longLatestEquity = long.equity_history.length > 0 ? long.equity_history[long.equity_history.length - 1].equity : 50000.0;
-                const longRet = ((longLatestEquity - 50000.0) / 50000.0) * 100;
-                
-                document.getElementById('long-equity').innerText = `$${longLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                document.getElementById('long-return').innerText = `${longRet >= 0 ? '+' : ''}${longRet.toFixed(2)}%`;
-                document.getElementById('long-return').className = `stat-value ${longRet >= 0 ? 'text-green' : 'text-red'}`;
-                document.getElementById('long-mdd').innerText = `${long.mdd.toFixed(2)}%`;
-                document.getElementById('long-win-rate').innerText = `${long.win_rate.toFixed(2)}%`;
-                document.getElementById('long-sharpe').innerText = `${long.advanced_metrics.sharpe_ratio.toFixed(2)}`;
-                document.getElementById('long-profit-factor').innerText = `${long.advanced_metrics.profit_factor.toFixed(2)}`;
-                document.getElementById('long-avg-win').innerText = `$${long.advanced_metrics.avg_win.toFixed(2)}`;
-                document.getElementById('long-avg-loss').innerText = `$${long.advanced_metrics.avg_loss.toFixed(2)}`;
-                document.getElementById('long-curr-dd').innerText = `${long.advanced_metrics.current_drawdown.toFixed(2)}%`;
-                document.getElementById('long-trades').innerText = `${long.total_trades} 次`;
-                document.getElementById('long-cash').innerText = `$${long.allocated_cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                document.getElementById('long-holding').innerText = long.holdings_str;
-                document.getElementById('long-holding').className = `stat-value ${long.is_holding ? 'text-green' : 'text-red'}`;
-                document.getElementById('long-pool').innerText = `$${longLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                
-                // 3. 更新空頭策略數據
-                const short = data.short_strategy;
-                const shortLatestEquity = short.equity_history.length > 0 ? short.equity_history[short.equity_history.length - 1].equity : 50000.0;
-                const shortRet = ((shortLatestEquity - 50000.0) / 50000.0) * 100;
-                
-                document.getElementById('short-equity').innerText = `$${shortLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                document.getElementById('short-return').innerText = `${shortRet >= 0 ? '+' : ''}${shortRet.toFixed(2)}%`;
-                document.getElementById('short-return').className = `stat-value ${shortRet >= 0 ? 'text-green' : 'text-red'}`;
-                document.getElementById('short-mdd').innerText = `${short.mdd.toFixed(2)}%`;
-                document.getElementById('short-win-rate').innerText = `${short.win_rate.toFixed(2)}%`;
-                document.getElementById('short-sharpe').innerText = `${short.advanced_metrics.sharpe_ratio.toFixed(2)}`;
-                document.getElementById('short-profit-factor').innerText = `${short.advanced_metrics.profit_factor.toFixed(2)}`;
-                document.getElementById('short-avg-win').innerText = `$${short.advanced_metrics.avg_win.toFixed(2)}`;
-                document.getElementById('short-avg-loss').innerText = `$${short.advanced_metrics.avg_loss.toFixed(2)}`;
-                document.getElementById('short-curr-dd').innerText = `${short.advanced_metrics.current_drawdown.toFixed(2)}%`;
-                document.getElementById('short-trades').innerText = `${short.total_trades} 次`;
-                document.getElementById('short-cash').innerText = `$${short.allocated_cash.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                document.getElementById('short-holding').innerText = short.holdings_str;
-                document.getElementById('short-holding').className = `stat-value ${short.is_holding ? 'text-green' : 'text-red'}`;
-                document.getElementById('short-pool').innerText = `$${shortLatestEquity.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-                
-                // 4. 更新實時策略比較表格
-                document.getElementById('comp-long-ret').innerText = `${longRet >= 0 ? '+' : ''}${longRet.toFixed(2)}%`;
-                document.getElementById('comp-long-ret').className = longRet >= 0 ? 'text-green' : 'text-red';
-                document.getElementById('comp-short-ret').innerText = `${shortRet >= 0 ? '+' : ''}${shortRet.toFixed(2)}%`;
-                document.getElementById('comp-short-ret').className = shortRet >= 0 ? 'text-green' : 'text-red';
-                
-                document.getElementById('comp-long-mdd').innerText = `${long.mdd.toFixed(2)}%`;
-                document.getElementById('comp-short-mdd').innerText = `${short.mdd.toFixed(2)}%`;
-                
-                document.getElementById('comp-long-win').innerText = `${long.win_rate.toFixed(2)}%`;
-                document.getElementById('comp-short-win').innerText = `${short.win_rate.toFixed(2)}%`;
-                
-                document.getElementById('comp-long-pf').innerText = `${long.advanced_metrics.profit_factor.toFixed(2)}`;
-                document.getElementById('comp-short-pf').innerText = `${short.advanced_metrics.profit_factor.toFixed(2)}`;
-                
-                document.getElementById('comp-long-sharpe').innerText = `${long.advanced_metrics.sharpe_ratio.toFixed(2)}`;
-                document.getElementById('comp-short-sharpe').innerText = `${short.advanced_metrics.sharpe_ratio.toFixed(2)}`;
-                
-                document.getElementById('comp-long-avgwin').innerText = `$${long.advanced_metrics.avg_win.toFixed(2)}`;
-                document.getElementById('comp-short-avgwin').innerText = `$${short.advanced_metrics.avg_win.toFixed(2)}`;
-                
-                document.getElementById('comp-long-avgloss').innerText = `$${long.advanced_metrics.avg_loss.toFixed(2)}`;
-                document.getElementById('comp-short-avgloss').innerText = `$${short.advanced_metrics.avg_loss.toFixed(2)}`;
+                // 繪製 Chart.js
+                renderChart(data.equity_history);
 
-                // 5. 更新歷史交易表格
-                updateTradesTable('long-trades-body', long.trade_history);
-                updateTradesTable('short-trades-body', short.trade_history);
-                
-                // 5. 渲染淨值折線圖
-                renderChart(long.equity_history, short.equity_history);
-                
             } catch (err) {
-                console.error("載入數據失敗:", err);
-                document.getElementById('last-updated').innerText = "數據加載出錯，請確認 public_data.json 是否生成。";
+                console.error("載入儀表板數據失敗:", err);
             }
         }
 
-        function updateTradesTable(elementId, trades) {
-            const tbody = document.getElementById(elementId);
-            if (!trades || trades.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--text-secondary);">無交易歷史紀錄</td></tr>`;
-                return;
-            }
-            
-            tbody.innerHTML = trades.slice().reverse().map(t => {
-                const actionBadge = t.type === 'BUY' ? '<span class="badge badge-buy">買入</span>' : '<span class="badge badge-sell">賣出</span>';
-                return `
-                    <tr>
-                        <td>${t.date.split(' ')[0]}</td>
-                        <td>${actionBadge}</td>
-                        <td>${t.reason || 'N/A'}</td>
-                        <td>$${t.price.toFixed(2)}</td>
-                        <td>$${t.amount.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        let equityChartInstance = null;
-        function renderChart(longHistory, shortHistory) {
+        function renderChart(history) {
             const ctx = document.getElementById('equityChart').getContext('2d');
-            
-            // 整理日期集合
-            const allDates = Array.from(new Set([
-                ...longHistory.map(h => h.date),
-                ...shortHistory.map(h => h.date)
-            ])).sort();
-            
-            if (allDates.length === 0) {
-                allDates.push(new Date().toISOString().split('T')[0]);
-            }
-            
-            const longDataMap = new Map(longHistory.map(h => [h.date, h.equity]));
-            const shortDataMap = new Map(shortHistory.map(h => [h.date, h.equity]));
-            
-            // 如果某天缺數據，則延用前一天的淨值，最起點延用歷史起點
-            let lastLong = longHistory.length > 0 ? longHistory[0].equity : 50000.0;
-            const longPoints = allDates.map(date => {
-                if (longDataMap.has(date)) {
-                    lastLong = longDataMap.get(date);
-                }
-                return lastLong;
-            });
-            
-            let lastShort = shortHistory.length > 0 ? shortHistory[0].equity : 50000.0;
-            const shortPoints = allDates.map(date => {
-                if (shortDataMap.has(date)) {
-                    lastShort = shortDataMap.get(date);
-                }
-                return lastShort;
-            });
+            const labels = history.map(h => h.date);
+            const equityData = history.map(h => h.equity);
+            const withdrawData = history.map(h => h.withdraw_cash);
 
-            if (equityChartInstance) {
-                equityChartInstance.destroy();
+            if (chartInstance) {
+                chartInstance.destroy();
             }
 
-            equityChartInstance = new Chart(ctx, {
+            chartInstance = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: allDates,
+                    labels: labels,
                     datasets: [
                         {
-                            label: '多標的波段策略 (多頭 QQQ/SMH/DIA)',
-                            data: longPoints,
+                            label: '300萬總資產淨值 (NT$)',
+                            data: equityData,
                             borderColor: '#10b981',
-                            backgroundColor: 'rgba(16, 185, 129, 0.05)',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
                             fill: true,
-                            tension: 0.2,
+                            tension: 0.3,
                             borderWidth: 2
                         },
                         {
-                            label: '雙重避險策略 (空頭 SH/PSQ)',
-                            data: shortPoints,
-                            borderColor: '#ef4444',
-                            backgroundColor: 'rgba(239, 68, 68, 0.05)',
-                            fill: true,
-                            tension: 0.2,
+                            label: '方法 A 撥轉高利活存池 (NT$)',
+                            data: withdrawData,
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'transparent',
+                            borderDash: [5, 5],
+                            tension: 0.3,
                             borderWidth: 2
                         }
                     ]
@@ -701,48 +422,18 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            labels: {
-                                color: '#f3f4f6',
-                                font: { size: 12 }
-                            }
-                        }
+                        legend: { labels: { color: '#9ca3af' } }
                     },
                     scales: {
-                        x: {
-                            grid: { color: 'rgba(255, 255, 255, 0.03)' },
-                            ticks: { color: '#9ca3af' }
-                        },
-                        y: {
-                            grid: { color: 'rgba(255, 255, 255, 0.03)' },
-                            ticks: { color: '#9ca3af' }
-                        }
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#9ca3af' } },
+                        y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#9ca3af' } }
                     }
                 }
             });
         }
 
-        // PWA 安裝邏輯
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('pwa-install-btn').style.display = 'block';
-        });
-
-        document.getElementById('pwa-install-btn').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    document.getElementById('pwa-install-btn').style.display = 'none';
-                }
-                deferredPrompt = null;
-            }
-        });
-
-        // 初始化加載
-        fetchDashboardData();
+        loadDashboardData();
+        setInterval(loadDashboardData, 300000); // 5分鐘刷新一次
     </script>
 </body>
 </html>

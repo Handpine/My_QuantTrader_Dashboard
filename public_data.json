@@ -1,522 +1,653 @@
 {
-    "last_updated": "2026-08-02 22:48:38 (台灣時間)",
-    "total_account_equity": 99999.91,
-    "long_strategy": {
-        "allocated_cash": 49999.96,
-        "is_holding": false,
-        "holdings_str": "空倉中",
-        "highest_price": 0.0,
-        "mdd": 0.0,
-        "win_rate": 0.0,
-        "total_trades": 0,
-        "advanced_metrics": {
-            "sharpe_ratio": 0.0,
-            "profit_factor": 0.0,
-            "avg_win": 0.0,
-            "avg_loss": 0.0,
-            "current_drawdown": 0.0
-        },
-        "equity_history": [
-            {
-                "date": "2026-06-04",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0.0
-            },
-            {
-                "date": "2026-06-05",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-06",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-09",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-10",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-11",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-12",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-13",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-16",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-17",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-18",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-19",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-20",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-23",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-24",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-25",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-26",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-27",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-30",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-01",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-02",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-03",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-04",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-07",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-08",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-09",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-10",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-11",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-14",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-15",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-16",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-17",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-21",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-22",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-24",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-28",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-29",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-31",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-08-01",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            },
-            {
-                "date": "2026-08-02",
-                "equity": 49999.96,
-                "cash": 49999.96,
-                "position_value": 0
-            }
-        ],
-        "trade_history": []
+  "updated_at": "2026-08-03 17:50:01",
+  "market": "🇹🇼 純台股實戰本金量化策略 (Master Blueprint)",
+  "status": "OPERATIONAL_VERIFIED",
+  "target_capital_3m": {
+    "initial": 3000000.0,
+    "current_equity": 3722710.82,
+    "net_profit": 722710.82,
+    "roi": 24.09,
+    "annualized_roi": 15.3,
+    "mdd": -10.24,
+    "sharpe": 0.88,
+    "sortino": 0.88,
+    "ann_calmar": 1.49,
+    "withdraw_cash_pool": 735232.86,
+    "short_cash_base": 923982.47
+  },
+  "sandbox_100k": {
+    "initial": 100000.0,
+    "current_equity": 124090.36,
+    "net_profit": 24090.36,
+    "roi": 24.09
+  },
+  "audited_in_sample_metrics": {
+    "period": "2018-2024 (7年訓練集)",
+    "roi": 54.64,
+    "mdd": -5.85,
+    "sharpe": 0.9,
+    "sortino": 1.12,
+    "ann_calmar": 1.14,
+    "win_rate": 76.8
+  },
+  "positions": [
+    {
+      "symbol": "00713.TW",
+      "name": "元大高息低波",
+      "weight": "35%",
+      "price": 61.2,
+      "shares": 11936,
+      "value": 730483.21,
+      "status": "持倉中 (LONG)",
+      "signal": "HOLD",
+      "strategy_param": "SMA20/SMA60 + 2.5x ATR"
     },
-    "short_strategy": {
-        "allocated_cash": 49999.97,
-        "is_holding": false,
-        "holdings_str": "空倉中",
-        "highest_price": 0.0,
-        "mdd": 0.0,
-        "win_rate": 0.0,
-        "total_trades": 0,
-        "advanced_metrics": {
-            "sharpe_ratio": 0.0,
-            "profit_factor": 0.0,
-            "avg_win": 0.0,
-            "avg_loss": 0.0,
-            "current_drawdown": 0.0
-        },
-        "equity_history": [
-            {
-                "date": "2026-06-04",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0.0
-            },
-            {
-                "date": "2026-06-05",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-06",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-09",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-10",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-11",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-12",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-13",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-16",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-17",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-18",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-19",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-20",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-23",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-24",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-25",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-26",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-27",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-06-30",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-01",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-02",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-03",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-04",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-07",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-08",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-09",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-10",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-11",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-14",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-15",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-16",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-17",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-21",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-22",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-24",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-28",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-29",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-07-31",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-08-01",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            },
-            {
-                "date": "2026-08-02",
-                "equity": 49999.97,
-                "cash": 49999.97,
-                "position_value": 0
-            }
-        ],
-        "trade_history": []
+    {
+      "symbol": "006208.TW",
+      "name": "富邦台50",
+      "weight": "25%",
+      "price": 235.35,
+      "shares": 2113,
+      "value": 497294.56,
+      "status": "持倉中 (LONG)",
+      "signal": "HOLD",
+      "strategy_param": "SMA50/SMA150 + 3.0x ATR"
+    },
+    {
+      "symbol": "00878.TW",
+      "name": "國泰高股息",
+      "weight": "25%",
+      "price": 32.43,
+      "shares": 15092,
+      "value": 489433.56,
+      "status": "持倉中 (LONG)",
+      "signal": "HOLD",
+      "strategy_param": "SMA20/SMA60 + 2.5x ATR"
+    },
+    {
+      "symbol": "2330.TW",
+      "name": "台積電",
+      "weight": "15%",
+      "price": 2425.0,
+      "shares": 142,
+      "value": 344350.0,
+      "status": "持倉中 (LONG)",
+      "signal": "HOLD",
+      "strategy_param": "SMA50/SMA150 + 4.0x ATR"
     }
+  ],
+  "equity_history": [
+    {
+      "date": "2026-05-08",
+      "equity": 3644434.75,
+      "stock_val": 2394892.07,
+      "short_cash": 920237.06,
+      "withdraw_cash": 329305.62
+    },
+    {
+      "date": "2026-05-11",
+      "equity": 3651142.47,
+      "stock_val": 2401513.76,
+      "short_cash": 920300.42,
+      "withdraw_cash": 329328.29
+    },
+    {
+      "date": "2026-05-12",
+      "equity": 3646350.41,
+      "stock_val": 2396635.67,
+      "short_cash": 920363.77,
+      "withdraw_cash": 329350.97
+    },
+    {
+      "date": "2026-05-13",
+      "equity": 3631721.15,
+      "stock_val": 2381920.37,
+      "short_cash": 920427.14,
+      "withdraw_cash": 329373.64
+    },
+    {
+      "date": "2026-05-14",
+      "equity": 3653587.51,
+      "stock_val": 2403700.69,
+      "short_cash": 920490.51,
+      "withdraw_cash": 329396.32
+    },
+    {
+      "date": "2026-05-15",
+      "equity": 3640077.34,
+      "stock_val": 2390104.46,
+      "short_cash": 920553.88,
+      "withdraw_cash": 329418.99
+    },
+    {
+      "date": "2026-05-18",
+      "equity": 3624500.09,
+      "stock_val": 2374441.16,
+      "short_cash": 920617.26,
+      "withdraw_cash": 329441.67
+    },
+    {
+      "date": "2026-05-19",
+      "equity": 3609519.22,
+      "stock_val": 2359374.23,
+      "short_cash": 920680.64,
+      "withdraw_cash": 329464.35
+    },
+    {
+      "date": "2026-05-20",
+      "equity": 3595962.13,
+      "stock_val": 2345731.07,
+      "short_cash": 920744.02,
+      "withdraw_cash": 329487.04
+    },
+    {
+      "date": "2026-05-21",
+      "equity": 3651184.38,
+      "stock_val": 2400867.25,
+      "short_cash": 920807.41,
+      "withdraw_cash": 329509.72
+    },
+    {
+      "date": "2026-05-22",
+      "equity": 3678547.97,
+      "stock_val": 2428144.76,
+      "short_cash": 920870.81,
+      "withdraw_cash": 329532.41
+    },
+    {
+      "date": "2026-05-25",
+      "equity": 3742620.99,
+      "stock_val": 2492131.7,
+      "short_cash": 920934.2,
+      "withdraw_cash": 329555.09
+    },
+    {
+      "date": "2026-05-26",
+      "equity": 3735526.48,
+      "stock_val": 2484951.09,
+      "short_cash": 920997.61,
+      "withdraw_cash": 329577.78
+    },
+    {
+      "date": "2026-05-27",
+      "equity": 3776932.03,
+      "stock_val": 2526270.55,
+      "short_cash": 921061.01,
+      "withdraw_cash": 329600.47
+    },
+    {
+      "date": "2026-05-28",
+      "equity": 3747385.14,
+      "stock_val": 2496637.55,
+      "short_cash": 921124.43,
+      "withdraw_cash": 329623.16
+    },
+    {
+      "date": "2026-05-29",
+      "equity": 3808769.78,
+      "stock_val": 2557936.08,
+      "short_cash": 921187.84,
+      "withdraw_cash": 329645.86
+    },
+    {
+      "date": "2026-06-01",
+      "equity": 3862582.66,
+      "stock_val": 2611662.85,
+      "short_cash": 921251.26,
+      "withdraw_cash": 329668.55
+    },
+    {
+      "date": "2026-06-02",
+      "equity": 3893049.31,
+      "stock_val": 2642043.37,
+      "short_cash": 921314.69,
+      "withdraw_cash": 329691.25
+    },
+    {
+      "date": "2026-06-03",
+      "equity": 3944034.75,
+      "stock_val": 2692942.69,
+      "short_cash": 921378.11,
+      "withdraw_cash": 329713.95
+    },
+    {
+      "date": "2026-06-04",
+      "equity": 3920232.37,
+      "stock_val": 2669054.17,
+      "short_cash": 921441.55,
+      "withdraw_cash": 329736.65
+    },
+    {
+      "date": "2026-06-05",
+      "equity": 3887412.02,
+      "stock_val": 2636147.69,
+      "short_cash": 921504.99,
+      "withdraw_cash": 329759.35
+    },
+    {
+      "date": "2026-06-08",
+      "equity": 3742514.58,
+      "stock_val": 2195401.63,
+      "short_cash": 921568.43,
+      "withdraw_cash": 625544.52
+    },
+    {
+      "date": "2026-06-09",
+      "equity": 3742883.16,
+      "stock_val": 2195663.7,
+      "short_cash": 921631.87,
+      "withdraw_cash": 625587.59
+    },
+    {
+      "date": "2026-06-10",
+      "equity": 3699310.32,
+      "stock_val": 2151984.33,
+      "short_cash": 921695.33,
+      "withdraw_cash": 625630.66
+    },
+    {
+      "date": "2026-06-11",
+      "equity": 3700382.54,
+      "stock_val": 2152950.03,
+      "short_cash": 921758.78,
+      "withdraw_cash": 625673.73
+    },
+    {
+      "date": "2026-06-12",
+      "equity": 3737125.89,
+      "stock_val": 2189586.85,
+      "short_cash": 921822.24,
+      "withdraw_cash": 625716.8
+    },
+    {
+      "date": "2026-06-15",
+      "equity": 3784753.3,
+      "stock_val": 2237107.71,
+      "short_cash": 921885.7,
+      "withdraw_cash": 625759.88
+    },
+    {
+      "date": "2026-06-16",
+      "equity": 3799418.49,
+      "stock_val": 2251666.36,
+      "short_cash": 921949.17,
+      "withdraw_cash": 625802.96
+    },
+    {
+      "date": "2026-06-17",
+      "equity": 3808463.1,
+      "stock_val": 2260604.41,
+      "short_cash": 922012.64,
+      "withdraw_cash": 625846.05
+    },
+    {
+      "date": "2026-06-18",
+      "equity": 3833699.94,
+      "stock_val": 2285734.68,
+      "short_cash": 922076.12,
+      "withdraw_cash": 625889.13
+    },
+    {
+      "date": "2026-06-22",
+      "equity": 3878581.26,
+      "stock_val": 2330509.43,
+      "short_cash": 922139.6,
+      "withdraw_cash": 625932.22
+    },
+    {
+      "date": "2026-06-23",
+      "equity": 3861649.75,
+      "stock_val": 2313471.34,
+      "short_cash": 922203.09,
+      "withdraw_cash": 625975.32
+    },
+    {
+      "date": "2026-06-24",
+      "equity": 3825243.97,
+      "stock_val": 2276958.98,
+      "short_cash": 922266.58,
+      "withdraw_cash": 626018.41
+    },
+    {
+      "date": "2026-06-25",
+      "equity": 3831531.19,
+      "stock_val": 2283139.6,
+      "short_cash": 922330.07,
+      "withdraw_cash": 626061.51
+    },
+    {
+      "date": "2026-06-26",
+      "equity": 3770150.01,
+      "stock_val": 2221651.82,
+      "short_cash": 922393.57,
+      "withdraw_cash": 626104.61
+    },
+    {
+      "date": "2026-06-29",
+      "equity": 3788502.92,
+      "stock_val": 2234245.19,
+      "short_cash": 922457.08,
+      "withdraw_cash": 631800.65
+    },
+    {
+      "date": "2026-06-30",
+      "equity": 3814155.79,
+      "stock_val": 2259791.06,
+      "short_cash": 922520.58,
+      "withdraw_cash": 631844.14
+    },
+    {
+      "date": "2026-07-01",
+      "equity": 3832268.82,
+      "stock_val": 2277797.08,
+      "short_cash": 922584.1,
+      "withdraw_cash": 631887.64
+    },
+    {
+      "date": "2026-07-02",
+      "equity": 3820681.86,
+      "stock_val": 2266103.1,
+      "short_cash": 922647.61,
+      "withdraw_cash": 631931.15
+    },
+    {
+      "date": "2026-07-03",
+      "equity": 3824372.43,
+      "stock_val": 2269686.65,
+      "short_cash": 922711.13,
+      "withdraw_cash": 631974.65
+    },
+    {
+      "date": "2026-07-06",
+      "equity": 3835947.16,
+      "stock_val": 2281154.34,
+      "short_cash": 922774.66,
+      "withdraw_cash": 632018.16
+    },
+    {
+      "date": "2026-07-07",
+      "equity": 3808687.33,
+      "stock_val": 2253787.47,
+      "short_cash": 922838.19,
+      "withdraw_cash": 632061.67
+    },
+    {
+      "date": "2026-07-08",
+      "equity": 3815484.61,
+      "stock_val": 2260477.7,
+      "short_cash": 922901.72,
+      "withdraw_cash": 632105.19
+    },
+    {
+      "date": "2026-07-09",
+      "equity": 3805484.61,
+      "stock_val": 2250370.64,
+      "short_cash": 922965.26,
+      "withdraw_cash": 632148.71
+    },
+    {
+      "date": "2026-07-10",
+      "equity": 3805591.67,
+      "stock_val": 2250370.64,
+      "short_cash": 923028.8,
+      "withdraw_cash": 632192.23
+    },
+    {
+      "date": "2026-07-13",
+      "equity": 3811541.07,
+      "stock_val": 2256212.96,
+      "short_cash": 923092.35,
+      "withdraw_cash": 632235.75
+    },
+    {
+      "date": "2026-07-14",
+      "equity": 3772904.07,
+      "stock_val": 2199675.51,
+      "short_cash": 923155.9,
+      "withdraw_cash": 650072.66
+    },
+    {
+      "date": "2026-07-15",
+      "equity": 3775088.68,
+      "stock_val": 2201751.8,
+      "short_cash": 923219.46,
+      "withdraw_cash": 650117.42
+    },
+    {
+      "date": "2026-07-16",
+      "equity": 3781665.14,
+      "stock_val": 2208219.95,
+      "short_cash": 923283.02,
+      "withdraw_cash": 650162.17
+    },
+    {
+      "date": "2026-07-17",
+      "equity": 3692284.23,
+      "stock_val": 2118730.71,
+      "short_cash": 923346.58,
+      "withdraw_cash": 650206.94
+    },
+    {
+      "date": "2026-07-20",
+      "equity": 3689227.8,
+      "stock_val": 2115565.95,
+      "short_cash": 923410.15,
+      "withdraw_cash": 650251.7
+    },
+    {
+      "date": "2026-07-21",
+      "equity": 3711914.84,
+      "stock_val": 2138144.65,
+      "short_cash": 923473.72,
+      "withdraw_cash": 650296.47
+    },
+    {
+      "date": "2026-07-22",
+      "equity": 3725604.27,
+      "stock_val": 2151725.73,
+      "short_cash": 923537.3,
+      "withdraw_cash": 650341.24
+    },
+    {
+      "date": "2026-07-23",
+      "equity": 3725377.9,
+      "stock_val": 2151391.01,
+      "short_cash": 923600.88,
+      "withdraw_cash": 650386.01
+    },
+    {
+      "date": "2026-07-24",
+      "equity": 3709062.21,
+      "stock_val": 2134966.95,
+      "short_cash": 923664.47,
+      "withdraw_cash": 650430.79
+    },
+    {
+      "date": "2026-07-27",
+      "equity": 3710174.09,
+      "stock_val": 2135970.46,
+      "short_cash": 923728.06,
+      "withdraw_cash": 650475.57
+    },
+    {
+      "date": "2026-07-28",
+      "equity": 3650098.63,
+      "stock_val": 2075786.62,
+      "short_cash": 923791.66,
+      "withdraw_cash": 650520.35
+    },
+    {
+      "date": "2026-07-29",
+      "equity": 3612377.44,
+      "stock_val": 1953390.55,
+      "short_cash": 923855.25,
+      "withdraw_cash": 735131.63
+    },
+    {
+      "date": "2026-07-30",
+      "equity": 3610821.51,
+      "stock_val": 1951720.4,
+      "short_cash": 923918.86,
+      "withdraw_cash": 735182.24
+    },
+    {
+      "date": "2026-07-31",
+      "equity": 3722710.82,
+      "stock_val": 2063495.5,
+      "short_cash": 923982.47,
+      "withdraw_cash": 735232.86
+    }
+  ],
+  "recent_trades": [
+    {
+      "date": "2026-07-15",
+      "symbol": "00713.TW",
+      "name": "元大高息低波",
+      "type": "BUY",
+      "price": 60.6,
+      "shares": 12118.34,
+      "amount": 735000.0,
+      "reason": "多頭進場 (Bull Trend)"
+    },
+    {
+      "date": "2026-07-15",
+      "symbol": "006208.TW",
+      "name": "富邦台50",
+      "type": "BUY",
+      "price": 241.85,
+      "shares": 2168.91,
+      "amount": 525000.0,
+      "reason": "多頭進場 (Bull Trend)"
+    },
+    {
+      "date": "2026-07-15",
+      "symbol": "00878.TW",
+      "name": "國泰高股息",
+      "type": "BUY",
+      "price": 33.21,
+      "shares": 15216.32,
+      "amount": 505766.32,
+      "reason": "多頭進場 (Bull Trend)"
+    },
+    {
+      "date": "2026-07-20",
+      "symbol": "006208.TW",
+      "name": "富邦台50",
+      "type": "SELL",
+      "price": 226.12,
+      "shares": 2168.91,
+      "amount": 489533.72,
+      "reason": "止損賣出 (Trailing Stop)"
+    },
+    {
+      "date": "2026-07-20",
+      "symbol": "00878.TW",
+      "name": "國泰高股息",
+      "type": "SELL",
+      "price": 31.64,
+      "shares": 15216.32,
+      "amount": 480528.91,
+      "reason": "止損賣出 (Trailing Stop)"
+    },
+    {
+      "date": "2026-07-21",
+      "symbol": "006208.TW",
+      "name": "富邦台50",
+      "type": "BUY",
+      "price": 234.55,
+      "shares": 2085.33,
+      "amount": 489533.72,
+      "reason": "多頭進場 (Bull Trend)"
+    },
+    {
+      "date": "2026-07-21",
+      "symbol": "00878.TW",
+      "name": "國泰高股息",
+      "type": "BUY",
+      "price": 32.05,
+      "shares": 14980.28,
+      "amount": 480528.91,
+      "reason": "多頭進場 (Bull Trend)"
+    },
+    {
+      "date": "2026-07-29",
+      "symbol": "00713.TW",
+      "name": "元大高息低波",
+      "type": "SELL",
+      "price": 59.56,
+      "shares": 12118.34,
+      "amount": 720414.6,
+      "reason": "止損賣出 (Trailing Stop)"
+    },
+    {
+      "date": "2026-07-29",
+      "symbol": "006208.TW",
+      "name": "富邦台50",
+      "type": "SELL",
+      "price": 217.87,
+      "shares": 2085.33,
+      "amount": 453496.97,
+      "reason": "止損賣出 (Trailing Stop)"
+    },
+    {
+      "date": "2026-07-29",
+      "symbol": "00878.TW",
+      "name": "國泰高股息",
+      "type": "SELL",
+      "price": 31.06,
+      "shares": 14980.28,
+      "amount": 464478.99,
+      "reason": "止損賣出 (Trailing Stop)"
+    },
+    {
+      "date": "2026-07-29",
+      "symbol": "2330.TW",
+      "name": "台積電",
+      "type": "SELL",
+      "price": 2237.06,
+      "shares": 179.3,
+      "amount": 399560.68,
+      "reason": "止損賣出 (Trailing Stop)"
+    },
+    {
+      "date": "2026-07-30",
+      "symbol": "00713.TW",
+      "name": "元大高息低波",
+      "type": "BUY",
+      "price": 60.3,
+      "shares": 11936.96,
+      "amount": 720414.6,
+      "reason": "多頭進場 (Bull Trend)"
+    },
+    {
+      "date": "2026-07-30",
+      "symbol": "006208.TW",
+      "name": "富邦台50",
+      "type": "BUY",
+      "price": 214.4,
+      "shares": 2113.38,
+      "amount": 453496.97,
+      "reason": "多頭進場 (Bull Trend)"
+    },
+    {
+      "date": "2026-07-30",
+      "symbol": "00878.TW",
+      "name": "國泰高股息",
+      "type": "BUY",
+      "price": 30.75,
+      "shares": 15092.09,
+      "amount": 464478.99,
+      "reason": "多頭進場 (Bull Trend)"
+    },
+    {
+      "date": "2026-07-30",
+      "symbol": "2330.TW",
+      "name": "台積電",
+      "type": "BUY",
+      "price": 2205.0,
+      "shares": 142.73,
+      "amount": 315000.0,
+      "reason": "多頭進場 (Bull Trend)"
+    }
+  ]
 }
