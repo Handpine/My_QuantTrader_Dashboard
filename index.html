@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇹🇼 純台股實戰本金量化策略儀表板 (Master Blueprint)</title>
+    <title>🇹🇼 純台股實戰本金量化策略儀表板 (100萬虛擬帳戶)</title>
     <!-- PWA Support -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="pwa_icon.png">
@@ -195,48 +195,48 @@
         <div class="summary-grid">
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">300萬正式期 總淨值</span>
-                    <span class="badge badge-long">實戰對照</span>
+                    <span class="card-title">100萬虛擬帳戶 總淨值</span>
+                    <span class="badge badge-long">實戰模擬</span>
                 </div>
-                <div class="main-stat stat-positive" id="target-equity">NT$ --</div>
+                <div class="main-stat stat-positive" id="virtual-equity">NT$ --</div>
                 <div class="sub-stat">
-                    <span>累積淨利: <strong id="target-profit">--</strong></span>
-                    <span>ROI: <strong id="target-roi">--%</strong></span>
+                    <span>累積淨利: <strong id="virtual-profit">--</strong></span>
+                    <span>ROI: <strong id="virtual-roi">--%</strong></span>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">10萬首月沙盒測試</span>
-                    <span class="badge badge-wait">實體測試</span>
+                    <span class="card-title">🏆 卡瑪比率 (Calmar Ratio)</span>
+                    <span class="badge badge-gold">收益/回撤效率</span>
                 </div>
-                <div class="main-stat stat-gold" id="sandbox-equity">NT$ --</div>
+                <div class="main-stat stat-gold" id="calmar-val">--</div>
                 <div class="sub-stat">
-                    <span>測試淨利: <strong id="sandbox-profit">--</strong></span>
-                    <span>預期勝率: <strong>76.8%</strong></span>
+                    <span>年化 Calmar: <strong id="ann-calmar">--</strong></span>
+                    <span>累積 Calmar: <strong id="cum-calmar">--</strong></span>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">方法 A 已撥轉活存保本池</span>
+                    <span class="card-title">🛡️ 索提諾比率 (Sortino Ratio)</span>
+                    <span class="badge badge-wait">下行風險保護</span>
+                </div>
+                <div class="main-stat" style="color: #60a5fa;" id="sortino-val">--</div>
+                <div class="sub-stat">
+                    <span>Sharpe 比率: <strong id="sharpe-val">--</strong></span>
+                    <span>盲測 MDD: <strong id="mdd-val" class="stat-positive">--%</strong></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">方法 A 撥轉活存保本池</span>
                     <span class="badge badge-gold">無風險 1.75%</span>
                 </div>
                 <div class="main-stat stat-gold" id="withdraw-pool">NT$ --</div>
                 <div class="sub-stat">
-                    <span>底金防禦: <strong id="short-base">NT$ 900,000</strong></span>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">極致風控指標</span>
-                    <span class="badge badge-long">100% 審計驗證</span>
-                </div>
-                <div class="main-stat" style="color: #60a5fa;" id="metrics-calmar">Calmar --</div>
-                <div class="sub-stat">
-                    <span>盲測 MDD: <strong id="metrics-mdd" class="stat-positive">--%</strong></span>
-                    <span>Sortino: <strong id="metrics-sortino">--</strong></span>
+                    <span>底金防禦 (30%): <strong id="short-base">NT$ 300,000</strong></span>
                 </div>
             </div>
         </div>
@@ -244,7 +244,7 @@
         <!-- 淨值圖表區域 -->
         <div class="card chart-section">
             <div class="card-header">
-                <span class="card-title">📊 資產淨值累積歷史曲線 (Equity Curve)</span>
+                <span class="card-title">📊 100萬虛擬帳戶 資產淨值歷史曲線 (Equity Curve)</span>
                 <span style="font-size: 0.8rem; color: var(--text-secondary);">2025/01 - 至今</span>
             </div>
             <div class="chart-container">
@@ -255,7 +255,7 @@
         <!-- 持倉與訊號總表 -->
         <div class="card table-section">
             <div class="card-header">
-                <span class="card-title">📈 70% 多頭波段個股部位與即時訊號 (組合二 + Risk Parity)</span>
+                <span class="card-title">📈 70% 多頭波段個股部位與即時訊號 (組合二 + Risk Parity 70萬底金)</span>
             </div>
             <div style="overflow-x: auto;">
                 <table>
@@ -314,25 +314,24 @@
                 
                 document.getElementById('update-time').innerText = '最後更新: ' + data.updated_at;
                 
-                // 300萬正式期
-                const target = data.target_capital_3m;
-                document.getElementById('target-equity').innerText = 'NT$ ' + target.current_equity.toLocaleString();
-                document.getElementById('target-profit').innerText = (target.net_profit >= 0 ? '+' : '') + 'NT$ ' + target.net_profit.toLocaleString();
-                document.getElementById('target-roi').innerText = (target.roi >= 0 ? '+' : '') + target.roi + '%';
+                // 100萬虛擬帳戶
+                const acc = data.virtual_account_1m;
+                document.getElementById('virtual-equity').innerText = 'NT$ ' + acc.current_equity.toLocaleString();
+                document.getElementById('virtual-profit').innerText = (acc.net_profit >= 0 ? '+' : '') + 'NT$ ' + acc.net_profit.toLocaleString();
+                document.getElementById('virtual-roi').innerText = (acc.roi >= 0 ? '+' : '') + acc.roi + '%';
                 
-                // 10萬測試期
-                const sandbox = data.sandbox_100k;
-                document.getElementById('sandbox-equity').innerText = 'NT$ ' + sandbox.current_equity.toLocaleString();
-                document.getElementById('sandbox-profit').innerText = (sandbox.net_profit >= 0 ? '+' : '') + 'NT$ ' + sandbox.net_profit.toLocaleString();
+                // Calmar & Sortino Ratio 顯示
+                document.getElementById('calmar-val').innerText = 'Calmar ' + acc.ann_calmar_ratio;
+                document.getElementById('ann-calmar').innerText = acc.ann_calmar_ratio;
+                document.getElementById('cum-calmar').innerText = acc.cum_calmar_ratio;
+
+                document.getElementById('sortino-val').innerText = 'Sortino ' + acc.sortino_ratio;
+                document.getElementById('sharpe-val').innerText = acc.sharpe_ratio;
+                document.getElementById('mdd-val').innerText = acc.mdd + '%';
                 
                 // 利潤撥轉池
-                document.getElementById('withdraw-pool').innerText = 'NT$ ' + target.withdraw_cash_pool.toLocaleString();
-                document.getElementById('short-base').innerText = 'NT$ ' + target.short_cash_base.toLocaleString();
-                
-                // 風控指標
-                document.getElementById('metrics-calmar').innerText = '年化 Calmar ' + target.ann_calmar;
-                document.getElementById('metrics-mdd').innerText = target.mdd + '%';
-                document.getElementById('metrics-sortino').innerText = target.sortino;
+                document.getElementById('withdraw-pool').innerText = 'NT$ ' + acc.withdraw_cash_pool.toLocaleString();
+                document.getElementById('short-base').innerText = 'NT$ ' + acc.short_cash_base.toLocaleString();
 
                 // 持倉表格
                 const posBody = document.getElementById('position-table-body');
@@ -356,7 +355,7 @@
                 const tradeBody = document.getElementById('trade-table-body');
                 tradeBody.innerHTML = '';
                 if (data.recent_trades && data.recent_trades.length > 0) {
-                    data.recent_trades.reverse().forEach(tr => {
+                    data.recent_trades.slice().reverse().forEach(tr => {
                         const row = document.createElement('tr');
                         const isBuy = tr.type === 'BUY';
                         row.innerHTML = `
@@ -399,7 +398,7 @@
                     labels: labels,
                     datasets: [
                         {
-                            label: '300萬總資產淨值 (NT$)',
+                            label: '100萬虛擬帳戶淨值 (NT$)',
                             data: equityData,
                             borderColor: '#10b981',
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
