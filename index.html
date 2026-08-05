@@ -417,9 +417,12 @@
                 document.getElementById('long-stock-val').innerText = 'NT$ ' + (acc.long_stock_val || 0).toLocaleString();
                 document.getElementById('long-stock-cash').innerText = 'NT$ ' + (acc.long_unspent_cash || 0).toLocaleString();
 
-                // 30% 利潤撥轉池與底金
-                document.getElementById('short-base').innerText = 'NT$ ' + acc.short_cash_base.toLocaleString();
-                document.getElementById('withdraw-pool').innerText = 'NT$ ' + (acc.withdraw_cash_pool || 0).toLocaleString();
+                // 30% 利潤撥轉池與底金 (含 1.75% 活存每日累計利息)
+                const shortTotal = acc.short_cash_current || acc.short_cash_base || 300000;
+                const shortInterest = acc.short_cash_interest || 0;
+                document.getElementById('short-base').innerText = 'NT$ ' + Math.round(shortTotal).toLocaleString();
+                document.getElementById('withdraw-pool').innerText = 'NT$ ' + (acc.withdraw_cash_pool || 0).toLocaleString() + (shortInterest > 0 ? ` (活存累計利息: +NT$ ${shortInterest.toFixed(1)})` : '');
+
 
                 // 底部量化指標表格
                 document.getElementById('m-ann-calmar').innerText = acc.ann_calmar_ratio;
