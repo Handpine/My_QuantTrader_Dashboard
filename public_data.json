@@ -1,29 +1,29 @@
 {
-  "updated_at": "2026-08-05 16:20:59 (TST)",
+  "updated_at": "2026-08-06 15:48:38 (TST)",
   "market": "🇹🇼 純台股實戰量化交易系統 (100萬虛擬帳戶檔)",
   "status": "OPERATIONAL_VERIFIED",
   "window_mode_label": "🏆 實戰決策下單時段 (13:15 / 14:00)",
   "is_decision_window": true,
   "virtual_account_1m": {
     "start_date": "2026-08-03",
-    "start_date_label": "2026/08/03 啟動 (實戰第 3 天)",
+    "start_date_label": "2026/08/03 啟動 (實戰第 4 天)",
     "initial": 1000000.0,
-    "current_equity": 999430.09,
-    "net_profit": -569.91,
+    "current_equity": 999444.53,
+    "net_profit": -555.47,
     "roi": -0.06,
     "day1_fee": 598.5,
     "annualized_roi": -0.06,
-    "mdd": -9.5,
+    "mdd": -10.1,
     "sharpe_ratio": 0.9,
     "sortino_ratio": 0.9,
-    "ann_calmar_ratio": 1.57,
-    "cum_calmar_ratio": 2.48,
+    "ann_calmar_ratio": 1.53,
+    "cum_calmar_ratio": 2.43,
     "withdraw_cash_pool": 0.0,
     "short_cash_base": 300000.0,
-    "short_cash_current": 300028.52,
-    "short_cash_interest": 28.59,
-    "long_stock_val": 698649.45,
-    "long_unspent_cash": 752.12
+    "short_cash_current": 300042.78,
+    "short_cash_interest": 43.03,
+    "long_stock_val": 697651.95,
+    "long_unspent_cash": 1749.8
   },
   "audited_in_sample_metrics": {
     "period": "2018-2024 (7年訓練集對照)",
@@ -40,9 +40,9 @@
       "symbol": "00713.TW",
       "name": "元大高息低波",
       "weight": "35%",
-      "price": 60.85,
-      "shares": 4022,
-      "value": 244738.69,
+      "price": 61.1,
+      "shares": 4006,
+      "value": 244766.59,
       "status": "持倉中 (LONG)",
       "signal": "HOLD",
       "strategy_param": "SMA20/SMA60 + 2.5x ATR"
@@ -51,9 +51,9 @@
       "symbol": "006208.TW",
       "name": "富邦台50",
       "weight": "25%",
-      "price": 232.9,
-      "shares": 750,
-      "value": 174675.0,
+      "price": 238.25,
+      "shares": 733,
+      "value": 174637.25,
       "status": "持倉中 (LONG)",
       "signal": "HOLD",
       "strategy_param": "SMA50/SMA150 + 3.0x ATR"
@@ -62,9 +62,9 @@
       "symbol": "00878.TW",
       "name": "國泰高股息",
       "weight": "25%",
-      "price": 32.57,
-      "shares": 5368,
-      "value": 174835.76,
+      "price": 33.15,
+      "shares": 5274,
+      "value": 174833.11,
       "status": "持倉中 (LONG)",
       "signal": "HOLD",
       "strategy_param": "SMA20/SMA60 + 2.5x ATR"
@@ -73,9 +73,9 @@
       "symbol": "2330.TW",
       "name": "台積電",
       "weight": "15%",
-      "price": 2320.0,
-      "shares": 45,
-      "value": 104400.0,
+      "price": 2405.0,
+      "shares": 43,
+      "value": 103415.0,
       "status": "持倉中 (LONG)",
       "signal": "HOLD",
       "strategy_param": "SMA50/SMA150 + 4.0x ATR"
@@ -84,9 +84,23 @@
   "equity_history": [
     {
       "date": "2026-08-03",
-      "equity": 1001651.5,
-      "stock_val": 701651.5,
+      "equity": 989914.52,
+      "stock_val": 689914.52,
       "short_cash": 300000.0,
+      "withdraw_cash": 0.0
+    },
+    {
+      "date": "2026-08-04",
+      "equity": 985562.81,
+      "stock_val": 685548.55,
+      "short_cash": 300014.26,
+      "withdraw_cash": 0.0
+    },
+    {
+      "date": "2026-08-05",
+      "equity": 999430.19,
+      "stock_val": 699401.67,
+      "short_cash": 300028.52,
       "withdraw_cash": 0.0
     }
   ],
@@ -96,40 +110,40 @@
       "symbol": "00713.TW",
       "name": "元大高息低波",
       "type": "BUY",
-      "price": 60.85,
-      "shares": 4022,
-      "amount": 244948.17,
-      "reason": "首日建倉 (買入 4022 股 / 手續費 NT$ 209.5)"
+      "price": 61.1,
+      "shares": 4006,
+      "amount": 244976.07,
+      "reason": "首日建倉 (買入 4006 股 / 手續費 NT$ 209.5)"
     },
     {
       "date": "2026-08-03",
       "symbol": "006208.TW",
       "name": "富邦台50",
       "type": "BUY",
-      "price": 232.9,
-      "shares": 750,
-      "amount": 174824.62,
-      "reason": "首日建倉 (買入 750 股 / 手續費 NT$ 149.6)"
+      "price": 238.25,
+      "shares": 733,
+      "amount": 174786.88,
+      "reason": "首日建倉 (買入 733 股 / 手續費 NT$ 149.6)"
     },
     {
       "date": "2026-08-03",
       "symbol": "00878.TW",
       "name": "國泰高股息",
       "type": "BUY",
-      "price": 32.57,
-      "shares": 5368,
-      "amount": 174985.38,
-      "reason": "首日建倉 (買入 5368 股 / 手續費 NT$ 149.6)"
+      "price": 33.15,
+      "shares": 5274,
+      "amount": 174982.73,
+      "reason": "首日建倉 (買入 5274 股 / 手續費 NT$ 149.6)"
     },
     {
       "date": "2026-08-03",
       "symbol": "2330.TW",
       "name": "台積電",
       "type": "BUY",
-      "price": 2320.0,
-      "shares": 45,
-      "amount": 104489.77,
-      "reason": "首日建倉 (買入 45 股 / 手續費 NT$ 89.8)"
+      "price": 2405.0,
+      "shares": 43,
+      "amount": 103504.77,
+      "reason": "首日建倉 (買入 43 股 / 手續費 NT$ 89.8)"
     }
   ]
 }
