@@ -1,7 +1,7 @@
 # 📊 My Quant Trader Lab (純台股實戰本金量化交易系統)
 
 > 📊 **實時量化交易儀表板 (Live PWA Dashboard)**：  
-> **👉 [https://handpine.github.io/My_QuantTrader_Dashboard/](https://handpine.github.io/My_QuantTrader_Dashboard/)**  
+> **👉 [https://superbalabah.github.io/My_QuantTrader_Dashboard/](https://superbalabah.github.io/My_QuantTrader_Dashboard/)**  
 > *(點擊上方連結或複製網址，即可在瀏覽器查看/安裝本實驗室的實用策略收益與最新決策數據)*
 
 ---
@@ -59,7 +59,7 @@ graph TD
 
 ### 每日 2 大自動定點運算時程：
 1. 🏆 **13:15 TST (UTC 05:15)**：**【最關鍵實戰下單訊號】** 距離 13:30 收盤僅 15 分鐘，當日 K 線 99.5% 定型，完全過濾盤中洗盤雜訊，提供當天現場在券商 App 撮合下單時間窗！
-2. 🌙 **14:00 TST (UTC 06:00)**：盤後結算，自動將最新數據同步推送到 `Handpine/My_QuantTrader_Dashboard`。
+2. 🌙 **14:00 TST (UTC 06:00)**：盤後結算，自動將最新數據同步推送到 `SuperBalabah/My_QuantTrader_Dashboard`。
 
 ---
 
