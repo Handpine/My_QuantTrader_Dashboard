@@ -289,15 +289,18 @@
                         <tr>
                             <th>標的代碼與名稱</th>
                             <th>分配權重</th>
+                            <th>買入成本價</th>
                             <th>最新現價</th>
                             <th>持倉股數</th>
                             <th>部位現值 (NT$)</th>
+                            <th>未實現損益 (ROI)</th>
+                            <th>當前動態止損價</th>
                             <th>策略參數配置</th>
                             <th>當前狀態與訊號</th>
                         </tr>
                     </thead>
                     <tbody id="position-table-body">
-                        <tr><td colspan="7" style="text-align: center; color: var(--text-secondary);">載入中...</td></tr>
+                        <tr><td colspan="10" style="text-align: center; color: var(--text-secondary);">載入中...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -437,12 +440,21 @@
                 data.positions.forEach(pos => {
                     const tr = document.createElement('tr');
                     const badgeClass = pos.signal === 'HOLD' ? 'badge-long' : (pos.signal === 'BUY_READY' ? 'badge-gold' : 'badge-wait');
+                    const roiClass = (pos.unrealized_profit || 0) >= 0 ? 'stat-positive' : 'stat-negative';
+                    const roiSign = (pos.unrealized_profit || 0) >= 0 ? '+' : '';
+                    const entryPriceStr = pos.entry_price ? `NT$ ${pos.entry_price}` : 'NT$ --';
+                    const stopPriceStr = pos.stop_price ? `NT$ ${pos.stop_price}` : '無';
+                    const pnlStr = pos.unrealized_profit !== undefined ? `${roiSign}NT$ ${pos.unrealized_profit.toLocaleString()} (${roiSign}${pos.unrealized_roi}%)` : '--';
+
                     tr.innerHTML = `
                         <td><strong>${pos.symbol}</strong> ${pos.name}</td>
                         <td>${pos.weight}</td>
+                        <td><span style="color: #9ca3af;">${entryPriceStr}</span></td>
                         <td>NT$ ${pos.price}</td>
                         <td>${pos.shares.toLocaleString()} 股</td>
                         <td>NT$ ${pos.value.toLocaleString()}</td>
+                        <td><span class="${roiClass}" style="font-weight: 600;">${pnlStr}</span></td>
+                        <td><strong style="color: #ef4444;">${stopPriceStr}</strong></td>
                         <td><code style="color: #60a5fa;">${pos.strategy_param}</code></td>
                         <td><span class="badge ${badgeClass}">${pos.status}</span></td>
                     `;
